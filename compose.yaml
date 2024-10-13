@@ -1,4 +1,25 @@
 services:
+  app:
+    container_name: makibackend
+    image: ducminh210503/makibackend:v1
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+      SPRING_DATASOURCE_USERNAME: username
+      SPRING_DATASOURCE_PASSWORD: password
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - postgres
+    restart: unless-stopped
+
   postgres:
     container_name: postgres-sql
     image: postgres
