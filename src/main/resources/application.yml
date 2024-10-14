@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/animestyle
+    url: jdbc:postgresql://localhost:5432/postgres
     username: username
     password: password
     driver-class-name: org.postgresql.Driver
@@ -12,6 +12,7 @@ spring:
       hibernate:
         format_sql: true
     database: postgresql
+
   application:
     name: anime-style-staff
   mail:
@@ -27,8 +28,10 @@ spring:
             enable: true
   data:
     redis:
-      host: localhost
+      host: redis
       port: 6379
+      repositories:
+        enabled: false
 application:
   security:
     jwt:

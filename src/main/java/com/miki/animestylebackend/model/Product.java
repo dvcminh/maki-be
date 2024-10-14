@@ -28,4 +28,8 @@ public class Product extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+    @ManyToOne
+    @JoinColumn(name = "shop_id")
+    @JsonIgnoreProperties("products")
+    private Shop shop;
 }
