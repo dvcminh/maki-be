@@ -7,6 +7,7 @@ import com.miki.animestylebackend.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
@@ -60,10 +61,10 @@ public class ProductController extends BaseController{
 
     @GetMapping("/getProductsBySearch")
     public ResponseEntity<PageData<ProductData>> getProductsByName(@RequestParam(value = "name") String name,
-                                                            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
-                                                            @RequestParam(value = "size", required = false, defaultValue = "10") Integer size,
-                                                            @RequestParam(value = "sort", required = false, defaultValue = "ASC") Sort.Direction sort,
-                                                            @RequestParam(value = "sortBy", required = false, defaultValue = "productPrice") String sortBy  ) {
+                                                                   @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+                                                                   @RequestParam(value = "size", required = false, defaultValue = "10") Integer size,
+                                                                   @RequestParam(value = "sort", required = false, defaultValue = "ASC") Sort.Direction sort,
+                                                                   @RequestParam(value = "sortBy", required = false, defaultValue = "productPrice") String sortBy  ) {
 
 
          return ResponseEntity.ok(productService.getProductsByName(name, page, size, sort, sortBy));

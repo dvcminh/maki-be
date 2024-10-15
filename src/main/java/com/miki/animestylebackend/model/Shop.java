@@ -38,4 +38,8 @@ public class Shop extends BaseEntity{
 
     @Column(name = "image_url")
     private String imageUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
