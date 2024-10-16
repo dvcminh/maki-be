@@ -1,6 +1,6 @@
 package com.miki.animestylebackend.service;
 
-import com.miki.animestylebackend.dto.PaymentResDTO;
+import com.miki.animestylebackend.dto.response.PaymentResDTO;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.UnsupportedEncodingException;

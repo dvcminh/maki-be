@@ -1,13 +1,16 @@
 package com.miki.animestylebackend.controller;
 
-import com.miki.animestylebackend.dto.*;
 import com.miki.animestylebackend.dto.page.PageData;
+import com.miki.animestylebackend.dto.request.CreateProductRequest;
+import com.miki.animestylebackend.dto.request.UpdateProductRequest;
+import com.miki.animestylebackend.dto.response.GetProductGroupByCategoryData;
+import com.miki.animestylebackend.dto.response.ProductData;
+import com.miki.animestylebackend.dto.response.ProductDto;
 import com.miki.animestylebackend.mapper.ProductMapper;
 import com.miki.animestylebackend.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
@@ -46,16 +49,16 @@ public class ProductController extends BaseController{
 
     @PostMapping("/getProductByListId")
     public ResponseEntity<PageData<ProductData>> getProductsByListId(@RequestBody List<UUID> uuids,
-                                                     @RequestParam(defaultValue = "0") int page,
-                                                     @RequestParam(defaultValue = "10") int size) {
+                                                                     @RequestParam(defaultValue = "0") int page,
+                                                                     @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(productService.getProductsByListId(uuids, page, size));
     }
 
     @GetMapping("/getCategoryAndProductByCategory")
     public ResponseEntity<PageData<GetProductGroupByCategoryData>> getCategoryAndProductByCategory(@RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
-                                                                                   @RequestParam(value = "size", required = false, defaultValue = "10") Integer size,
-                                                                                   @RequestParam(value = "sort", required = false, defaultValue = "ASC") Sort.Direction sort,
-                                                                                   @RequestParam(value = "sortBy", required = false, defaultValue = "productPrice") String sortBy) {
+                                                                                                   @RequestParam(value = "size", required = false, defaultValue = "10") Integer size,
+                                                                                                   @RequestParam(value = "sort", required = false, defaultValue = "ASC") Sort.Direction sort,
+                                                                                                   @RequestParam(value = "sortBy", required = false, defaultValue = "productPrice") String sortBy) {
         return ResponseEntity.ok(productService.getCategoryAndProductByCategory(page, size, sort, sortBy));
     }
 

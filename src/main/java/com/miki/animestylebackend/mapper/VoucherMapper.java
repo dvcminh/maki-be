@@ -1,7 +1,7 @@
 package com.miki.animestylebackend.mapper;
 
-import com.miki.animestylebackend.dto.VoucherData;
-import com.miki.animestylebackend.dto.VoucherDto;
+import com.miki.animestylebackend.dto.response.VoucherData;
+import com.miki.animestylebackend.dto.response.VoucherDto;
 import com.miki.animestylebackend.model.Voucher;
 
 public interface VoucherMapper {

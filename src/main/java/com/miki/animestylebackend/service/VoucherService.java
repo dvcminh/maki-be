@@ -1,10 +1,10 @@
 package com.miki.animestylebackend.service;
 
 
-import com.miki.animestylebackend.dto.CreateVoucherRequest;
-import com.miki.animestylebackend.dto.UpdateVoucherRequest;
-import com.miki.animestylebackend.dto.VoucherData;
-import com.miki.animestylebackend.dto.VoucherDto;
+import com.miki.animestylebackend.dto.request.CreateVoucherRequest;
+import com.miki.animestylebackend.dto.request.UpdateVoucherRequest;
+import com.miki.animestylebackend.dto.response.VoucherData;
+import com.miki.animestylebackend.dto.response.VoucherDto;
 import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.model.Voucher;
 

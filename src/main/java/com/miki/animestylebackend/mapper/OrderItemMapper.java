@@ -1,7 +1,7 @@
 package com.miki.animestylebackend.mapper;
 
-import com.miki.animestylebackend.dto.OrderItemData;
-import com.miki.animestylebackend.dto.OrderItemDto;
+import com.miki.animestylebackend.dto.response.OrderItemData;
+import com.miki.animestylebackend.dto.response.OrderItemDto;
 import com.miki.animestylebackend.model.OrderItem;
 
 public interface OrderItemMapper {

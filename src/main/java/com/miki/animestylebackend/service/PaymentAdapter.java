@@ -1,7 +1,7 @@
 package com.miki.animestylebackend.service;
 
 import com.miki.animestylebackend.config.Config;
-import com.miki.animestylebackend.dto.PaymentResDTO;
+import com.miki.animestylebackend.dto.response.PaymentResDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 

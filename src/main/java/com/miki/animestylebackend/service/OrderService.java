@@ -2,10 +2,10 @@ package com.miki.animestylebackend.service;
 
 
 
-import com.miki.animestylebackend.dto.CreateOrderRequest;
-import com.miki.animestylebackend.dto.OrderData;
-import com.miki.animestylebackend.dto.OrderDto;
-import com.miki.animestylebackend.dto.UpdateStatusRequest;
+import com.miki.animestylebackend.dto.request.CreateOrderRequest;
+import com.miki.animestylebackend.dto.response.OrderData;
+import com.miki.animestylebackend.dto.response.OrderDto;
+import com.miki.animestylebackend.dto.request.UpdateStatusRequest;
 import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.model.Order;
 

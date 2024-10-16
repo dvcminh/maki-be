@@ -1,12 +1,8 @@
 package com.miki.animestylebackend.mapper;
 
-import com.miki.animestylebackend.dto.OrderDto;
-import com.miki.animestylebackend.dto.OrderData;
-import com.miki.animestylebackend.dto.UserData;
-import com.miki.animestylebackend.dto.UserDto;
+import com.miki.animestylebackend.dto.response.OrderDto;
+import com.miki.animestylebackend.dto.response.OrderData;
 import com.miki.animestylebackend.model.Order;
-import com.miki.animestylebackend.model.User;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

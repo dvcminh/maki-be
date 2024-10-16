@@ -17,7 +17,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Table(name = "shops")
-public class Shop extends BaseEntity{
+public class Shop extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 

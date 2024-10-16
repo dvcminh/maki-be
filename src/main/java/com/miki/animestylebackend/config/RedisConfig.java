@@ -1,6 +1,6 @@
 package com.miki.animestylebackend.config;
 
-import com.miki.animestylebackend.dto.UserDto;
+import com.miki.animestylebackend.dto.response.UserDto;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;

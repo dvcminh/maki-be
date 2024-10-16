@@ -1,9 +1,9 @@
 package com.miki.animestylebackend.service;
 
-import com.miki.animestylebackend.dto.AuthenticationData;
-import com.miki.animestylebackend.dto.AuthenticationRequest;
-import com.miki.animestylebackend.dto.AuthenticationResponse;
-import com.miki.animestylebackend.dto.RegisterRequest;
+import com.miki.animestylebackend.dto.response.AuthenticationData;
+import com.miki.animestylebackend.dto.request.AuthenticationRequest;
+import com.miki.animestylebackend.dto.response.AuthenticationResponse;
+import com.miki.animestylebackend.dto.request.RegisterRequest;
 import com.miki.animestylebackend.exception.BadRequestException;
 import com.miki.animestylebackend.exception.InvalidUsernameOrPassword;
 import com.miki.animestylebackend.mapper.UserMapper;

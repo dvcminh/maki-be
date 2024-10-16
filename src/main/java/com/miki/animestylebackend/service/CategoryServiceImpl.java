@@ -1,12 +1,15 @@
 package com.miki.animestylebackend.service;
 
-import com.miki.animestylebackend.dto.*;
 import com.miki.animestylebackend.dto.page.PageData;
+import com.miki.animestylebackend.dto.request.CreateCategoryRequest;
+import com.miki.animestylebackend.dto.request.UpdateCategoryRequest;
+import com.miki.animestylebackend.dto.response.CategoryData;
+import com.miki.animestylebackend.dto.response.CategoryDto;
+import com.miki.animestylebackend.dto.response.GetProductGroupByCategoryData;
 import com.miki.animestylebackend.mapper.CategoryMapper;
 import com.miki.animestylebackend.model.Category;
 import com.miki.animestylebackend.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

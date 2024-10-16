@@ -1,9 +1,8 @@
 package com.miki.animestylebackend.mapper;
 
-import com.miki.animestylebackend.dto.VoucherDto;
-import com.miki.animestylebackend.dto.VoucherData;
+import com.miki.animestylebackend.dto.response.VoucherDto;
+import com.miki.animestylebackend.dto.response.VoucherData;
 import com.miki.animestylebackend.model.Voucher;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

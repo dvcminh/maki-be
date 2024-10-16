@@ -1,7 +1,7 @@
 package com.miki.animestylebackend.service;
 
 
-import com.miki.animestylebackend.dto.OrderItemData;
+import com.miki.animestylebackend.dto.response.OrderItemData;
 import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.model.OrderItem;
 

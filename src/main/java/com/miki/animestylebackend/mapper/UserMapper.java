@@ -1,7 +1,7 @@
 package com.miki.animestylebackend.mapper;
 
-import com.miki.animestylebackend.dto.UserData;
-import com.miki.animestylebackend.dto.UserDto;
+import com.miki.animestylebackend.dto.response.UserData;
+import com.miki.animestylebackend.dto.response.UserDto;
 import com.miki.animestylebackend.model.User;
 
 public interface UserMapper {

@@ -1,7 +1,7 @@
 package com.miki.animestylebackend.mapper;
 
-import com.miki.animestylebackend.dto.ProductData;
-import com.miki.animestylebackend.dto.ProductDto;
+import com.miki.animestylebackend.dto.response.ProductData;
+import com.miki.animestylebackend.dto.response.ProductDto;
 import com.miki.animestylebackend.model.Product;
 
 public interface ProductMapper {

@@ -1,9 +1,9 @@
 package com.miki.animestylebackend.controller;
 
 import com.miki.animestylebackend.service.AuthenticationService;
-import com.miki.animestylebackend.dto.AuthenticationRequest;
-import com.miki.animestylebackend.dto.AuthenticationResponse;
-import com.miki.animestylebackend.dto.RegisterRequest;
+import com.miki.animestylebackend.dto.request.AuthenticationRequest;
+import com.miki.animestylebackend.dto.response.AuthenticationResponse;
+import com.miki.animestylebackend.dto.request.RegisterRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

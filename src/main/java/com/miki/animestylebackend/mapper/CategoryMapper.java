@@ -1,11 +1,10 @@
 package com.miki.animestylebackend.mapper;
 
-import com.miki.animestylebackend.dto.CategoryData;
-import com.miki.animestylebackend.dto.CategoryDto;
-import com.miki.animestylebackend.dto.GetProductGroupByCategoryData;
-import com.miki.animestylebackend.dto.ProductData;
+import com.miki.animestylebackend.dto.response.CategoryData;
+import com.miki.animestylebackend.dto.response.CategoryDto;
+import com.miki.animestylebackend.dto.response.GetProductGroupByCategoryData;
+import com.miki.animestylebackend.dto.response.ProductData;
 import com.miki.animestylebackend.model.Category;
-import com.miki.animestylebackend.model.Product;
 
 import java.util.List;
 

@@ -1,10 +1,9 @@
 package com.miki.animestylebackend.controller;
 
-import com.miki.animestylebackend.controller.UserController;
-import com.miki.animestylebackend.dto.ChangePasswordRequest;
-import com.miki.animestylebackend.dto.UpdateProfileRequest;
-import com.miki.animestylebackend.dto.UserData;
-import com.miki.animestylebackend.dto.UserDto;
+import com.miki.animestylebackend.dto.request.ChangePasswordRequest;
+import com.miki.animestylebackend.dto.request.UpdateProfileRequest;
+import com.miki.animestylebackend.dto.response.UserData;
+import com.miki.animestylebackend.dto.response.UserDto;
 import com.miki.animestylebackend.model.User;
 import com.miki.animestylebackend.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.test.context.support.WithMockUser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

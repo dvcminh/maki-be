@@ -1,23 +1,19 @@
 package com.miki.animestylebackend.service;
 
 
-import com.miki.animestylebackend.dto.OrderItemData;
-import com.miki.animestylebackend.dto.OrderItemDto;
+import com.miki.animestylebackend.dto.response.OrderItemData;
 import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.mapper.OrderItemMapper;
-import com.miki.animestylebackend.model.Order;
 import com.miki.animestylebackend.model.OrderItem;
 import com.miki.animestylebackend.repository.OrderItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 
 @Service

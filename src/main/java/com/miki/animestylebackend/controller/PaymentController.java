@@ -1,8 +1,7 @@
 package com.miki.animestylebackend.controller;
 
-import com.miki.animestylebackend.config.Config;
-import com.miki.animestylebackend.dto.PaymentResDTO;
-import com.miki.animestylebackend.dto.TransactionStatusDTO;
+import com.miki.animestylebackend.dto.response.PaymentResDTO;
+import com.miki.animestylebackend.dto.response.TransactionStatusDTO;
 import com.miki.animestylebackend.service.PaymentService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
-import static com.miki.animestylebackend.config.Config.*;
-
 
 
 @Controller

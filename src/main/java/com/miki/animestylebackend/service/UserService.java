@@ -1,21 +1,20 @@
 package com.miki.animestylebackend.service;
 
-import com.miki.animestylebackend.dto.UpdateProfileRequest;
-import com.miki.animestylebackend.dto.UserData;
-import com.miki.animestylebackend.dto.UserDto;
+import com.miki.animestylebackend.dto.request.UpdateProfileRequest;
+import com.miki.animestylebackend.dto.response.UserData;
+import com.miki.animestylebackend.dto.response.UserDto;
 import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.exception.UnAuthorizedException;
 import com.miki.animestylebackend.exception.UserNotFoundException;
 import com.miki.animestylebackend.mapper.UserMapper;
 import com.miki.animestylebackend.model.Role;
 import com.miki.animestylebackend.repository.UserRepository;
-import com.miki.animestylebackend.dto.ChangePasswordRequest;
+import com.miki.animestylebackend.dto.request.ChangePasswordRequest;
 import com.miki.animestylebackend.model.User;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Range;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,8 +22,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
-import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 

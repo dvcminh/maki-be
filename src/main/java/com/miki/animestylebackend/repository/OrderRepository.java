@@ -1,9 +1,7 @@
 package com.miki.animestylebackend.repository;
 
 
-import com.miki.animestylebackend.dto.OrderDto;
 import com.miki.animestylebackend.model.Order;
-import com.miki.animestylebackend.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
