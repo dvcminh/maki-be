@@ -35,4 +35,12 @@ public class EmailService {
 
         sendEmail(email, subjectEmail, text);
     }
+
+    public void sendOTPEmail(String email, String otp) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(email);
+        message.setSubject("Your OTP");
+        message.setText("Your OTP is: " + otp);
+        mailSender.send(message);
+    }
 }
