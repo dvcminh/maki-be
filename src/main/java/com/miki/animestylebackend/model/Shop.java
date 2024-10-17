@@ -39,6 +39,21 @@ public class Shop extends BaseEntity {
     @Column(name = "image_url")
     private String imageUrl;
 
+    @Column(name = "open_time")
+    private LocalDateTime openTime;
+
+    @Column(name = "close_time")
+    private LocalDateTime closeTime;
+
+    @Column(name = "is_open")
+    private Boolean isOpen;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
