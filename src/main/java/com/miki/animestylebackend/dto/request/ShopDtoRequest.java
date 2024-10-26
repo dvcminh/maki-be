@@ -1,11 +1,12 @@
 package com.miki.animestylebackend.dto.request;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
-import java.math.BigDecimal;
+import java.util.UUID;
+
 @Data
-public class CreateShopRequest {
+public class ShopDtoRequest {
+    private UUID id;
     private String name;
     private String address;
     private String phoneNumber;

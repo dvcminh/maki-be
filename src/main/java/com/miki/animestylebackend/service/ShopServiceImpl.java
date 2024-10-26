@@ -1,6 +1,6 @@
 package com.miki.animestylebackend.service;
 
-import com.miki.animestylebackend.dto.request.CreateShopRequest;
+import com.miki.animestylebackend.dto.request.ShopDtoRequest;
 import com.miki.animestylebackend.dto.response.ShopDto;
 import com.miki.animestylebackend.mapper.ShopMapper;
 import com.miki.animestylebackend.model.Shop;
@@ -17,24 +17,33 @@ public class ShopServiceImpl implements ShopService {
     public final ShopMapper shopMapper;
 
     @Override
-    public ShopDto createShop(CreateShopRequest createShopRequest) {
+    public ShopDto createShop(ShopDtoRequest shopDtoRequest) {
 
         return shopMapper.toDto(
                 shopRepository.save(Shop.builder()
-                        .name(createShopRequest.getName())
-                        .description(createShopRequest.getDescription())
-                        .address(createShopRequest.getAddress())
-                        .email(createShopRequest.getEmail())
-                        .phoneNumber(createShopRequest.getPhoneNumber())
+                        .name(shopDtoRequest.getName())
+                        .description(shopDtoRequest.getDescription())
+                        .address(shopDtoRequest.getAddress())
+                        .email(shopDtoRequest.getEmail())
+                        .phoneNumber(shopDtoRequest.getPhoneNumber())
                         .rating(BigDecimal.valueOf(0))
-                        .imageUrl(createShopRequest.getImageUrl())
+                        .imageUrl(shopDtoRequest.getImageUrl())
                         .build()), "Shop created successfully");
 
     }
 
     @Override
-    public Shop updateShop() {
-        return null;
+    public ShopDto updateShop(ShopDtoRequest shopDtoRequest) {
+        Shop shop = Shop.builder()
+                .name(shopDtoRequest.getName())
+                .description(shopDtoRequest.getDescription())
+                .address(shopDtoRequest.getAddress())
+                .email(shopDtoRequest.getEmail())
+                .phoneNumber(shopDtoRequest.getPhoneNumber())
+                .rating(BigDecimal.valueOf(0))
+                .imageUrl(shopDtoRequest.getImageUrl())
+                .build();
+        return shopMapper.toDto(shopRepository.save(shop), "Shop updated successfully");
     }
 
     @Override

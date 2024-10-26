@@ -1,10 +1,9 @@
 package com.miki.animestylebackend.controller;
 
-import com.miki.animestylebackend.dto.request.CreateShopRequest;
+import com.miki.animestylebackend.dto.request.ShopDtoRequest;
 import com.miki.animestylebackend.dto.response.ShopDto;
 import com.miki.animestylebackend.model.Shop;
 import com.miki.animestylebackend.service.ShopService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShopController {
     public static ShopService shopService;
     @PostMapping("/register")
-    public ResponseEntity<ShopDto> registerShop(@RequestBody CreateShopRequest createShopRequest) {
-        return ResponseEntity.ok(shopService.createShop(createShopRequest));
+    public ResponseEntity<ShopDto> registerShop(@RequestBody ShopDtoRequest shopDtoRequest) {
+        return ResponseEntity.ok(shopService.createShop(shopDtoRequest));
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Shop> updateShop() {
-        return ResponseEntity.ok(shopService.updateShop());
+    public ResponseEntity<ShopDto> updateShop(@RequestBody ShopDtoRequest updateShopRequest) {
+        return ResponseEntity.ok(shopService.updateShop(updateShopRequest));
     }
 }
 
