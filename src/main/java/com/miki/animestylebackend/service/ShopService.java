@@ -1,12 +1,13 @@
 package com.miki.animestylebackend.service;
 
-import com.miki.animestylebackend.dto.request.ShopDtoRequest;
+import com.miki.animestylebackend.dto.request.ShopSaveDtoRequest;
 import com.miki.animestylebackend.dto.response.ShopDto;
 import com.miki.animestylebackend.model.Shop;
 
+import java.util.UUID;
+
 public interface ShopService {
-    public ShopDto createShop(ShopDtoRequest shopDtoRequest);
-    public ShopDto updateShop(ShopDtoRequest updateShopRequest);
-    public Shop deleteShop();
+    public ShopDto saveShop(ShopSaveDtoRequest shopSaveDtoRequest);
+    public Shop deleteShop(UUID id);
     public Shop getShop();
 }

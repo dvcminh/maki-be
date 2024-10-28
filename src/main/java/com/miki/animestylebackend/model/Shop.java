@@ -18,7 +18,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "shops")
 public class Shop extends BaseEntity {
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @Column(name = "address")
@@ -36,23 +36,29 @@ public class Shop extends BaseEntity {
     @Column(name = "rating")
     private BigDecimal rating;
 
+    @Column(name = "rating_count")
+    private Integer ratingCount;
+
     @Column(name = "image_url")
     private String imageUrl;
+
+    @Column(name = "is_open")
+    private Boolean isOpen;
+
+    @Column(name = "is_approved")
+    private Boolean isApproved = false;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+    @Column(name = "license")
+    private String license;
 
     @Column(name = "open_time")
     private LocalDateTime openTime;
 
     @Column(name = "close_time")
     private LocalDateTime closeTime;
-
-    @Column(name = "is_open")
-    private Boolean isOpen;
-
-    @Column(name = "is_active")
-    private Boolean isActive;
-
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

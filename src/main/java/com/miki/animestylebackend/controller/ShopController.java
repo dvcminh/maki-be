@@ -1,27 +1,32 @@
 package com.miki.animestylebackend.controller;
 
-import com.miki.animestylebackend.dto.request.ShopDtoRequest;
+import com.miki.animestylebackend.dto.request.ShopSaveDtoRequest;
 import com.miki.animestylebackend.dto.response.ShopDto;
-import com.miki.animestylebackend.model.Shop;
 import com.miki.animestylebackend.service.ShopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
 public class ShopController {
     public static ShopService shopService;
     @PostMapping("/register")
-    public ResponseEntity<ShopDto> registerShop(@RequestBody ShopDtoRequest shopDtoRequest) {
-        return ResponseEntity.ok(shopService.createShop(shopDtoRequest));
+    public ResponseEntity<ShopDto> registerShop(@RequestBody ShopSaveDtoRequest shopSaveDtoRequest) {
+        return ResponseEntity.ok(shopService.saveShop(shopSaveDtoRequest));
     }
 
     @PostMapping("/update")
-    public ResponseEntity<ShopDto> updateShop(@RequestBody ShopDtoRequest updateShopRequest) {
-        return ResponseEntity.ok(shopService.updateShop(updateShopRequest));
+    public ResponseEntity<ShopDto> updateShop(@RequestBody ShopSaveDtoRequest updateShopRequest) {
+        return ResponseEntity.ok(shopService.saveShop(updateShopRequest));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteShop(@PathVariable UUID id) {
+        shopService.deleteShop(id);
+        return ResponseEntity.ok("Shop deleted successfully");
     }
 }
 
