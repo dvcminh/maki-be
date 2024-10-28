@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDateTime;
@@ -39,6 +40,18 @@ public class GlobalExceptionHandler {
                 false
         );
         return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(HttpClientErrorException.Forbidden.class)
+    public ResponseEntity<ErrorResponse> handleForbiddenException(HttpClientErrorException.Forbidden ex, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                FORBIDDEN.value(),
+                ex.getMessage(),
+                LocalDateTime.now(),
+                request.getDescription(false),
+                false
+        );
+        return new ResponseEntity<>(errorResponse, FORBIDDEN);
     }
 
 

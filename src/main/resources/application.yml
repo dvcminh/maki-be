@@ -46,3 +46,6 @@ management:
   health:
     mail:
       enabled: off
+file:
+  storage:
+    path: /uploads
