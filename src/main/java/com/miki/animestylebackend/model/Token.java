@@ -1,10 +1,12 @@
 package com.miki.animestylebackend.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
+import lombok.*;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -26,4 +28,5 @@ public class Token extends BaseEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   public User user;
+
 }

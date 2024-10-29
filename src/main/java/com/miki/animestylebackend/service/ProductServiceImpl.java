@@ -10,7 +10,7 @@ import com.miki.animestylebackend.exception.ProductNotFoundException;
 import com.miki.animestylebackend.mapper.ProductMapper;
 import com.miki.animestylebackend.model.Category;
 import com.miki.animestylebackend.model.Product;
-import com.miki.animestylebackend.repository.ProductRepository;
+import com.miki.animestylebackend.repository.jpa.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
@@ -124,7 +124,6 @@ public class ProductServiceImpl implements ProductService {
         Product product = Product.builder()
                 .productName(createProductRequest.getName())
                 .productDescription(createProductRequest.getDescription())
-                .productColor(createProductRequest.getColor())
                 .productPrice(createProductRequest.getPrice())
                 .productQuantity(createProductRequest.getQuantity())
                 .category(category)
@@ -141,7 +140,6 @@ public class ProductServiceImpl implements ProductService {
         Category category = categoryService.getCategoryByName(createProductRequest.getCategory());
         product.setProductName(createProductRequest.getName());
         product.setProductDescription(createProductRequest.getDescription());
-        product.setProductColor(createProductRequest.getColor());
         product.setProductPrice(createProductRequest.getPrice());
         product.setProductQuantity(createProductRequest.getQuantity());
         product.setCategory(category);

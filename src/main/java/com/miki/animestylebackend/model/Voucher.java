@@ -1,5 +1,6 @@
 package com.miki.animestylebackend.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,4 +25,8 @@ public class Voucher extends BaseEntity{
     private String description;
     private int quantity;
     private boolean isUsed;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id")
+    @Nullable
+    private Shop shop;
 }

@@ -8,7 +8,7 @@ import com.miki.animestylebackend.exception.UnAuthorizedException;
 import com.miki.animestylebackend.exception.UserNotFoundException;
 import com.miki.animestylebackend.mapper.UserMapper;
 import com.miki.animestylebackend.model.Role;
-import com.miki.animestylebackend.repository.UserRepository;
+import com.miki.animestylebackend.repository.jpa.UserRepository;
 import com.miki.animestylebackend.dto.request.ChangePasswordRequest;
 import com.miki.animestylebackend.model.User;
 import jakarta.transaction.Transactional;

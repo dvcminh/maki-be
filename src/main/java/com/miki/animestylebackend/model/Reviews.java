@@ -27,10 +27,13 @@ public class Reviews extends BaseEntity{
     @JoinColumn(name = "driver_id", nullable = false)
     private Driver driver;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", nullable = false)
+    private Order order;
+
     @Column(name = "rating")
     private Integer rating;
 
     @Column(name = "comment")
     private String comment;
-
 }

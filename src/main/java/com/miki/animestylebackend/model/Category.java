@@ -15,8 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Category extends BaseEntity {
-
     private String name;
-
     private String description;
+    @ManyToOne
+    @JoinColumn(name = "shop_id")
+    private Shop shop;
 }

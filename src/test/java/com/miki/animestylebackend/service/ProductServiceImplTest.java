@@ -2,7 +2,7 @@ package com.miki.animestylebackend.service;
 
 import com.miki.animestylebackend.mapper.ProductMapper;
 import com.miki.animestylebackend.model.Product;
-import com.miki.animestylebackend.repository.ProductRepository;
+import com.miki.animestylebackend.repository.jpa.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;

@@ -1,6 +1,6 @@
 package com.miki.animestylebackend.service;
 
-import com.miki.animestylebackend.repository.TokenRepository;
+import com.miki.animestylebackend.repository.jpa.TokenRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

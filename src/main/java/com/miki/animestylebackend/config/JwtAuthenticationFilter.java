@@ -1,6 +1,6 @@
 package com.miki.animestylebackend.config;
 
-import com.miki.animestylebackend.repository.TokenRepository;
+import com.miki.animestylebackend.repository.jpa.TokenRepository;
 import com.miki.animestylebackend.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

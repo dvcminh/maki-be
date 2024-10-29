@@ -1,7 +1,7 @@
 package com.miki.animestylebackend.service;
 
 import com.miki.animestylebackend.model.GpsTracking;
-import com.miki.animestylebackend.repository.GpsTrackingRepository;
+import com.miki.animestylebackend.repository.jpa.GpsTrackingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

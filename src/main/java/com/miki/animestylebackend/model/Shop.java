@@ -45,8 +45,8 @@ public class Shop extends BaseEntity {
     @Column(name = "is_open")
     private Boolean isOpen;
 
-    @Column(name = "is_approved")
-    private Boolean isApproved = false;
+    @Column(name = "verified")
+    private Boolean verified = false;
 
     @Column(name = "is_deleted")
     private Boolean isDeleted;
@@ -59,6 +59,10 @@ public class Shop extends BaseEntity {
 
     @Column(name = "close_time")
     private LocalDateTime closeTime;
+
+    @Column(name = "cuisine_type")
+    @Enumerated(value = EnumType.STRING)
+    private CuisineType cuisineType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

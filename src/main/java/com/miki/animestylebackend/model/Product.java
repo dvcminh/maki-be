@@ -20,8 +20,6 @@ public class Product extends BaseEntity {
     @Column(length = 1000)
     private String productDescription;
     private String productSize;
-    @Enumerated(EnumType.STRING)
-    private ProductColor productColor;
     private BigDecimal productPrice;
     private Integer productQuantity;
     private String productImage;

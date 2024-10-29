@@ -5,7 +5,7 @@ import com.miki.animestylebackend.dto.response.OrderItemData;
 import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.mapper.OrderItemMapper;
 import com.miki.animestylebackend.model.OrderItem;
-import com.miki.animestylebackend.repository.OrderItemRepository;
+import com.miki.animestylebackend.repository.jpa.OrderItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

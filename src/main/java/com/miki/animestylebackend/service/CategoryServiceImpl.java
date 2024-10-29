@@ -8,7 +8,7 @@ import com.miki.animestylebackend.dto.response.CategoryDto;
 import com.miki.animestylebackend.dto.response.GetProductGroupByCategoryData;
 import com.miki.animestylebackend.mapper.CategoryMapper;
 import com.miki.animestylebackend.model.Category;
-import com.miki.animestylebackend.repository.CategoryRepository;
+import com.miki.animestylebackend.repository.jpa.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

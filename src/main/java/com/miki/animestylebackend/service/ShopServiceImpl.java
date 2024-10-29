@@ -4,7 +4,7 @@ import com.miki.animestylebackend.dto.request.ShopSaveDtoRequest;
 import com.miki.animestylebackend.dto.response.ShopDto;
 import com.miki.animestylebackend.mapper.ShopMapper;
 import com.miki.animestylebackend.model.Shop;
-import com.miki.animestylebackend.repository.ShopRepository;
+import com.miki.animestylebackend.repository.jpa.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

@@ -25,7 +25,6 @@ public class ProductMapperImpl implements ProductMapper {
         productData.setDescription(product.getProductDescription());
         productData.setPrice(product.getProductPrice());
         productData.setSize(product.getProductSize());
-        productData.setColor(product.getProductColor());
         productData.setQuantity(product.getProductQuantity());
 
         ProductDto productDto = new ProductDto();
@@ -52,7 +51,6 @@ public class ProductMapperImpl implements ProductMapper {
         productData.setDescription(product.getProductDescription());
         productData.setPrice(product.getProductPrice());
         productData.setSize(product.getProductSize());
-        productData.setColor(product.getProductColor());
         productData.setQuantity(product.getProductQuantity());
 
         return productData;

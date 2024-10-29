@@ -29,5 +29,8 @@ public class OrderDelivery extends BaseEntity{
     private String status;
 
     @Column(name = "delivery_time")
-    private LocalDateTime deliveryTime;
+    private LocalDateTime estimatedDeliveryTime;
+
+    @Column(name = "actual_delivery_time")
+    private LocalDateTime actualDeliveryTime;
 }

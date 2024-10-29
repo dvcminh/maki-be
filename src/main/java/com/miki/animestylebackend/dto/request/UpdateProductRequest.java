@@ -1,6 +1,5 @@
 package com.miki.animestylebackend.dto.request;
 
-import com.miki.animestylebackend.model.ProductColor;
 import jakarta.persistence.Enumerated;
 import lombok.*;
 
@@ -15,8 +14,6 @@ public class UpdateProductRequest {
     private UUID id;
     private String name;
     private String description;
-    @Enumerated
-    private ProductColor color;
     private BigDecimal price;
     private int quantity;
     private String image;

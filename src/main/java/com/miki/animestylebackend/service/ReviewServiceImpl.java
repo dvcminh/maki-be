@@ -1,7 +1,7 @@
 package com.miki.animestylebackend.service;
 
 import com.miki.animestylebackend.model.Reviews;
-import com.miki.animestylebackend.repository.ReviewsRepository;
+import com.miki.animestylebackend.repository.jpa.ReviewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

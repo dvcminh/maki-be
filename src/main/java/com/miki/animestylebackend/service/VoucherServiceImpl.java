@@ -11,7 +11,7 @@ import com.miki.animestylebackend.exception.VoucherNotFoundException;
 import com.miki.animestylebackend.exception.VoucherOutOfStockException;
 import com.miki.animestylebackend.mapper.VoucherMapper;
 import com.miki.animestylebackend.model.Voucher;
-import com.miki.animestylebackend.repository.VoucherRepository;
+import com.miki.animestylebackend.repository.jpa.VoucherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

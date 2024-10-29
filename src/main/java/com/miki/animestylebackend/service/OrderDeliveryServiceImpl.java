@@ -1,7 +1,7 @@
 package com.miki.animestylebackend.service;
 
 import com.miki.animestylebackend.model.OrderDelivery;
-import com.miki.animestylebackend.repository.OrderDeliveryRepository;
+import com.miki.animestylebackend.repository.jpa.OrderDeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

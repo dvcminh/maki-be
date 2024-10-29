@@ -1,4 +1,4 @@
-package com.miki.animestylebackend.repository;
+package com.miki.animestylebackend.repository.jpa;
 
 import com.miki.animestylebackend.model.Product;
 import org.springframework.data.domain.Page;

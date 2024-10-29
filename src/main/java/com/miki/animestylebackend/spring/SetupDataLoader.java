@@ -2,7 +2,7 @@ package com.miki.animestylebackend.spring;
 
 import com.miki.animestylebackend.model.Role;
 import com.miki.animestylebackend.model.User;
-import com.miki.animestylebackend.repository.UserRepository;
+import com.miki.animestylebackend.repository.jpa.UserRepository;
 import com.miki.animestylebackend.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
