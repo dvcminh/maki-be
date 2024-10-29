@@ -4,9 +4,8 @@ import lombok.*;
 import lombok.Builder;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
-import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @RedisHash("OTP")
 @Getter

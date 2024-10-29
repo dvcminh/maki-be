@@ -1,16 +1,13 @@
 package com.miki.animestylebackend.service;
 
 import com.miki.animestylebackend.model.OTP;
-import com.miki.animestylebackend.repository.OTPRepository;
+import com.miki.animestylebackend.repository.redis.OTPRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor

@@ -3,8 +3,7 @@ package com.miki.animestylebackend.controller;
 
 import com.miki.animestylebackend.exception.BadRequestException;
 import com.miki.animestylebackend.model.User;
-import com.miki.animestylebackend.repository.UserRepository;
-import lombok.AllArgsConstructor;
+import com.miki.animestylebackend.repository.jpa.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,6 +1,6 @@
 package com.miki.animestylebackend.config;
 
-import com.miki.animestylebackend.repository.UserRepository;
+import com.miki.animestylebackend.repository.jpa.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
