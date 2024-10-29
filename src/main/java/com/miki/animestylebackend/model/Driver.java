@@ -14,18 +14,17 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "drivers")
-public class Driver extends BaseEntity{
+public class Driver extends BaseEntity {
 
-    @Column(name = "name")
-    private String name;
-
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
     @Column(name = "phone_number")
     private String phoneNumber;
-
     @Column(name = "vehicle_details")
     private String vehicleDetails;
-
     @Column(name = "available")
     private Boolean available;
+    @Column(name = "verified")
+    private Boolean verified = false;
 }

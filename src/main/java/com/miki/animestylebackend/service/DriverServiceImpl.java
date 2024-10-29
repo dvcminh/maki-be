@@ -1,7 +1,7 @@
 package com.miki.animestylebackend.service;
 
 import com.miki.animestylebackend.model.Driver;
-import com.miki.animestylebackend.repository.DriverRepository;
+import com.miki.animestylebackend.repository.jpa.DriverRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

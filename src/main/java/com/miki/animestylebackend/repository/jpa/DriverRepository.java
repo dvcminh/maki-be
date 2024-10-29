@@ -1,4 +1,4 @@
-package com.miki.animestylebackend.repository;
+package com.miki.animestylebackend.repository.jpa;
 
 import com.miki.animestylebackend.model.Driver;
 import org.springframework.data.jpa.repository.JpaRepository;
