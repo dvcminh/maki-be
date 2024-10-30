@@ -27,13 +27,8 @@ public class FileStorage {
             columnDefinition = "BOOLEAN DEFAULT FALSE"
     )
     private Boolean isDeleted = false;
-    private boolean isPublished;
     private String filePath;
     private String extension;
-    @ManyToOne
-    @JoinColumn(name = "shop_request_id")
-    private ShopRequest shopRequest;
-
     @ManyToOne
     @JoinColumn(name = "ticket_id")
     private Ticket ticket;

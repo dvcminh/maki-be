@@ -71,12 +71,11 @@ public class FileStorageServiceImpl implements FileStorageService {
                     .updatedAt(LocalDateTime.now())
                     .userId(user.getId())
                     .isDeleted(false)
-                    .isPublished(true)
                     .filePath(filePath)
                     .extension(extension)
                     .build();
             FileStorage savedFile = fileStorageRepository.save(fileStorage);
-            return fileStorageMapper.mapEntityToDto(savedFile);
+            return fileStorageMapper.toDto(savedFile);
         } catch (IOException e) {
             throw new BadRequestException(e.getLocalizedMessage());
         }
@@ -117,7 +116,7 @@ public class FileStorageServiceImpl implements FileStorageService {
             throw new BadRequestException("File is deleted");
         }
 
-        fileStorage.setPublished(!fileStorage.isPublished());
+//        fileStorage.setPublished(!fileStorage.isPublished());
         fileStorageRepository.save(fileStorage);
         return "Updated successfully";
     }
@@ -140,7 +139,7 @@ public class FileStorageServiceImpl implements FileStorageService {
 
     @Override
     public List<FileStorageDto> getInfoOfFiles() {
-        return fileStorageRepository.findAll().stream().map(file -> fileStorageMapper.mapEntityToDto(file)).collect(Collectors.toList());
+        return fileStorageRepository.findAll().stream().map(file -> fileStorageMapper.toDto(file)).collect(Collectors.toList());
     }
 
     @Override
@@ -225,11 +224,11 @@ public class FileStorageServiceImpl implements FileStorageService {
             setDeleted(fileStorage);
             return new MessageResponse(fileStorage.getId().toString(), "File is not in memory");
         }
-        if (!fileStorage.isPublished()) {
-            return fileStorageMapper.mapEntityToDto(fileStorage);
-        }
+//        if (!fileStorage.isPublished()) {
+//            return fileStorageMapper.toDto(fileStorage);
+//        }
         if (isUser) {
-            return fileStorageMapper.mapEntityToDto(fileStorage);
+            return fileStorageMapper.toDto(fileStorage);
         }
         return new MessageResponse(fileStorage.getId().toString(), "File is not publish");
     }

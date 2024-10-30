@@ -16,16 +16,22 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Ticket extends BaseEntity {
+    private String imageUrl;
     @ManyToOne
     private User user;
-    @Enumerated(value = EnumType.STRING)
-    private TicketType ticketType;
-    @OneToMany(mappedBy = "ticket")
-    private List<FileStorage> fileStorageList;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id")
     @Nullable
     private Shop shop;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "driver_id")
     @Nullable
     private Driver driver;
+    @Enumerated(value = EnumType.STRING)
+    private TicketType ticketType;
+    @Enumerated(value = EnumType.STRING)
+    private RequestStatus ticketStatus;
+    @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<FileStorage> fileStorageList;
 }
+
