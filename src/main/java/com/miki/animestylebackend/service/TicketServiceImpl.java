@@ -64,4 +64,13 @@ public class TicketServiceImpl implements TicketService {
         Page<Ticket> tickets = ticketRepository.findByTicketTypeAndTicketStatus(ticketType, ticketStatus, pageable);
         return new PageData<>(tickets, "Filter ticket successfully");
     }
+
+    @Override
+    public Ticket approveTicket(UUID ticketId) {
+        Ticket ticket = ticketRepository.findById(ticketId)
+                .orElseThrow(() -> new NotFoundException("Ticket not found"));
+
+        ticket.setTicketStatus(RequestStatus.APPROVED);
+        return ticketRepository.save(ticket);
+    }
 }

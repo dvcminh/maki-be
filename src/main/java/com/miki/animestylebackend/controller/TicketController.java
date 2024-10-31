@@ -52,4 +52,9 @@ public class TicketController extends BaseController {
                                          @RequestParam(value = "sortBy", required = false, defaultValue = "createdAt") String sortBy) {
         return ticketService.filterTicket(ticketType, ticketStatus, page, size, sort, sortBy);
     }
+
+    @PostMapping("/approveTicket")
+    public Ticket approveTicket(@RequestParam("ticketId") UUID ticketId) {
+        return ticketService.approveTicket(ticketId);
+    }
 }

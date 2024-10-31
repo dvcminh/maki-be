@@ -17,4 +17,6 @@ public interface TicketService {
     List<Ticket> getAllTickets();
 
     PageData<Ticket> filterTicket(TicketType ticketType, RequestStatus ticketStatus, int page, int size, Sort.Direction sort, String sortBy);
+
+    Ticket approveTicket(UUID ticketId);
 }
