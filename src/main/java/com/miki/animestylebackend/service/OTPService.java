@@ -17,13 +17,11 @@ public class OTPService {
     @Autowired
     private final OTPRepository otpRepository;
     private final EmailService emailService;
-    public String generateOTP(String email) {
+    public void generateOTPandsendEmail(String email) {
         String otp = generateRandomOTP();
         LocalDateTime expirationTime = LocalDateTime.now().plusMinutes(OTP_EXPIRATION_MINUTES);
         OTP otpEntity = new OTP(email, otp, expirationTime);
         otpRepository.save(otpEntity);
-        emailService.sendOTPEmail(email.trim(), otp);
-        return otp;
     }
     public boolean validateOTP(String email, String otp) {
         if (email == null || otp == null || email.isEmpty() || otp.isEmpty()) {

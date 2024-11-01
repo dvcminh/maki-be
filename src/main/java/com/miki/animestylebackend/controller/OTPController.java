@@ -27,7 +27,7 @@ public class OTPController {
     @PostMapping("/generate")
     public ResponseEntity<String> generateOTP(@RequestBody GenerateOTPRequest email) {
         if (bucket.tryConsume(1)) {
-            String otp = otpService.generateOTP(email.getEmail());
+            otpService.generateOTPandsendEmail(email.getEmail());
             return ResponseEntity.ok("OTP sent to your email");
         }
         return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body("Rate limit exceeded. Try again later.");

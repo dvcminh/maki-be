@@ -1,12 +1,17 @@
 package com.miki.animestylebackend.service;
 
+import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.dto.request.ShopSaveDtoRequest;
 import com.miki.animestylebackend.dto.response.ShopDto;
 import com.miki.animestylebackend.mapper.ShopMapper;
+import com.miki.animestylebackend.model.CuisineType;
 import com.miki.animestylebackend.model.Shop;
 import com.miki.animestylebackend.repository.jpa.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -41,7 +46,11 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Shop getShop() {
-        return null;
+    public PageData<ShopDto> getShop(String name, Boolean isOpen, BigDecimal ratingStart, BigDecimal ratingEnd, CuisineType cuisineType, int page, int size, String sort, String sortBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sort), sortBy));
+        return new PageData<>(shopRepository.findDistinctByNameContainsAndRatingBetweenAndIsOpenAndCuisineTypeOrderByRatingDesc(name, ratingStart, ratingEnd, isOpen, cuisineType, pageable)
+                .map(shop -> shopMapper.toDto(shop, "Success")), "Shops found successfully");
     }
+
+
 }

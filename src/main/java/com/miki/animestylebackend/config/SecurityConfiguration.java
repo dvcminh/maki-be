@@ -1,6 +1,7 @@
 package com.miki.animestylebackend.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -50,11 +51,14 @@ public class SecurityConfiguration {
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final AuthenticationProvider authenticationProvider;
     private final LogoutHandler logoutHandler;
-
+    private final JwtAuthEntryPoint jwtAuthEntryPoint;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthEntryPoint)
+                .and()
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(GET, "/api/v1/users/me").hasAnyRole(CUSTOMER.name(), STAFF.name(), ADMIN.name())
                                 .requestMatchers(GET, "/api/v1/users/getUserByUsername").hasAnyRole(STAFF.name(), ADMIN.name())
