@@ -14,7 +14,7 @@ spring:
     database: postgresql
 
   application:
-    name: anime-style-staff
+    name: mika
   mail:
     host: smtp.gmail.com
     port: 587

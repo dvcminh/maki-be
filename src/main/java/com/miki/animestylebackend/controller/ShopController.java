@@ -4,6 +4,7 @@ import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.dto.request.ShopSaveDtoRequest;
 import com.miki.animestylebackend.dto.response.ShopDto;
 import com.miki.animestylebackend.model.CuisineType;
+import com.miki.animestylebackend.model.User;
 import com.miki.animestylebackend.service.ShopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/shop")
-public class ShopController {
+public class ShopController extends BaseController{
     private final ShopService shopService;
 
     @GetMapping("/get")
@@ -35,12 +36,14 @@ public class ShopController {
 
     @PostMapping("/register")
     public ResponseEntity<ShopDto> registerShop(@RequestBody ShopSaveDtoRequest shopSaveDtoRequest) {
-        return ResponseEntity.ok(shopService.saveShop(shopSaveDtoRequest));
+        User user = getCurrentUser();
+        return ResponseEntity.ok(shopService.saveShop(user, shopSaveDtoRequest));
     }
 
     @PostMapping("/update")
     public ResponseEntity<ShopDto> updateShop(@RequestBody ShopSaveDtoRequest updateShopRequest) {
-        return ResponseEntity.ok(shopService.saveShop(updateShopRequest));
+        User user = getCurrentUser();
+        return ResponseEntity.ok(shopService.saveShop(user, updateShopRequest));
     }
 
     @DeleteMapping("/delete/{id}")

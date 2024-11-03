@@ -56,9 +56,6 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthEntryPoint)
-                .and()
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(GET, "/api/v1/users/me").hasAnyRole(CUSTOMER.name(), STAFF.name(), ADMIN.name())
                                 .requestMatchers(GET, "/api/v1/users/getUserByUsername").hasAnyRole(STAFF.name(), ADMIN.name())
@@ -85,6 +82,7 @@ public class SecurityConfiguration {
                                 .anyRequest()
                                 .authenticated()
                 )
+                .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)

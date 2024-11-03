@@ -43,22 +43,22 @@ public class Shop extends BaseEntity {
     private String imageUrl;
 
     @Column(name = "is_open")
-    private Boolean isOpen;
+    private Boolean isOpen = false;
 
     @Column(name = "verified")
     private Boolean verified = false;
 
     @Column(name = "is_deleted")
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
 
     @Column(name = "license")
     private String license;
 
     @Column(name = "open_time")
-    private LocalDateTime openTime;
+    private LocalDateTime openTime = LocalDateTime.now();
 
     @Column(name = "close_time")
-    private LocalDateTime closeTime;
+    private LocalDateTime closeTime = LocalDateTime.now();
 
     @Column(name = "cuisine_type")
     @Enumerated(value = EnumType.STRING)

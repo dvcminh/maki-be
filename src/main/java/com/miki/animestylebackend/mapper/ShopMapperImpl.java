@@ -17,6 +17,9 @@ public class ShopMapperImpl implements ShopMapper{
         shopData.setName(shop.getName());
         shopData.setAddress(shop.getAddress());
         shopData.setPhoneNumber(shop.getPhoneNumber());
+        shopData.setRating(shop.getRating());
+        shopData.setRatingCount(shop.getRatingCount());
+        shopData.setImageUrl(shop.getImageUrl());
         shopData.setEmail(shop.getEmail());
         shopData.setDescription(shop.getDescription());
         shopData.setOpenTime(shop.getOpenTime());

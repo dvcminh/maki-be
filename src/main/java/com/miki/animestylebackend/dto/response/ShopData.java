@@ -13,6 +13,7 @@ public class ShopData {
     private String email;
     private String description;
     private BigDecimal rating;
+    private Integer ratingCount;
     private String imageUrl;
     private Boolean isOpen;
     private LocalDateTime openTime;

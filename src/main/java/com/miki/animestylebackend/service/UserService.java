@@ -50,6 +50,7 @@ public class UserService {
             throw new IllegalStateException("Exceeded maximum requests");
         }
     }
+
     public void changePassword(ChangePasswordRequest request, Principal connectedUser) {
 
         var user = (User) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
@@ -98,7 +99,6 @@ public class UserService {
     }
 
     public UserDto getUserProfile(UUID id, User currentUser) {
-//        limitAccess(currentUser.getUsername());
         User user = (User) redisTemplate.opsForHash().get(HASH_KEY, id);
         if (user != null) {
             redisTemplate.opsForHash().put(HASH_KEY, id, user);
@@ -111,6 +111,7 @@ public class UserService {
             throw new UnAuthorizedException("You do not have permission to do this action");
         }
     }
+
     @Transactional
     public UserDto save(UpdateProfileRequest profile, User currentUser) {
         currentUser.setFirstname(profile.getFirstName());

@@ -6,6 +6,7 @@ import com.miki.animestylebackend.dto.response.ShopDto;
 import com.miki.animestylebackend.mapper.ShopMapper;
 import com.miki.animestylebackend.model.CuisineType;
 import com.miki.animestylebackend.model.Shop;
+import com.miki.animestylebackend.model.User;
 import com.miki.animestylebackend.repository.jpa.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -24,13 +25,14 @@ public class ShopServiceImpl implements ShopService {
     public final ShopMapper shopMapper;
 
     @Override
-    public ShopDto saveShop(ShopSaveDtoRequest shopSaveDtoRequest) {
+    public ShopDto saveShop(User user, ShopSaveDtoRequest shopSaveDtoRequest) {
         Shop shop = shopSaveDtoRequest.getId() == null ? new Shop()
                 : shopRepository.findById(shopSaveDtoRequest.getId())
                 .orElseThrow(() -> new RuntimeException("Shop not found"));
 
         BeanUtils.copyProperties(shopSaveDtoRequest, shop);
 
+        shop.setUser(user);
         shop.setRating(BigDecimal.valueOf(0));
         shop.setRatingCount(0);
 
