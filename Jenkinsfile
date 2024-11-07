@@ -19,7 +19,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
                     sh 'docker login -u test -p ${test}'
                 }
-                sh 'docker tag maki ducminh210503/ducminh210503'
+                sh 'docker tag maki ducminh210503/maki'
                 sh 'docker push ducminh210503/maki'
             }
         }
