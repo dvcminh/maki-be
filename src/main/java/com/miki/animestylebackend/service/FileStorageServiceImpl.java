@@ -69,6 +69,8 @@ public class FileStorageServiceImpl implements FileStorageService {
                     .title(title)
                     .createdAt(LocalDateTime.now())
                     .updatedAt(LocalDateTime.now())
+                    .createdBy(user.getId())
+                    .updatedBy(user.getId())
                     .userId(user.getId())
                     .isDeleted(false)
                     .filePath(filePath)
@@ -79,6 +81,12 @@ public class FileStorageServiceImpl implements FileStorageService {
         } catch (IOException e) {
             throw new BadRequestException(e.getLocalizedMessage());
         }
+    }
+
+    @Override
+    public FileStorage findById(UUID file) {
+        return fileStorageRepository.findById(file)
+                .orElseThrow(() -> new NotFoundException("File not found"));
     }
 
 

@@ -1,6 +1,6 @@
 package com.miki.animestylebackend.model;
 
-public enum RequestStatus {
+public enum TicketStatus {
     PENDING,
     APPROVED,
     REJECTED

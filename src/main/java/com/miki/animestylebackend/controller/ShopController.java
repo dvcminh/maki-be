@@ -20,11 +20,11 @@ public class ShopController extends BaseController{
     private final ShopService shopService;
 
     @GetMapping("/get")
-    public ResponseEntity<PageData<ShopDto>> getShop(@RequestParam(value = "name", defaultValue = "0") String name,
-                                                     @RequestParam(value = "isopen", defaultValue = "10") Boolean isOpen,
-                                                     @RequestParam(value = "ratingStart", defaultValue = "0") BigDecimal ratingStart,
-                                                     @RequestParam(value = "ratingEnd", defaultValue = "0") BigDecimal ratingEnd,
-                                                     @RequestParam(value = "cuisineType", defaultValue = "0") CuisineType cuisineType,
+    public ResponseEntity<PageData<ShopDto>> getShop(@RequestParam(value = "name", defaultValue = "shop") String name,
+                                                     @RequestParam(value = "isopen", defaultValue = "false") Boolean isOpen,
+                                                     @RequestParam(value = "ratingStart", defaultValue = "0.00") BigDecimal ratingStart,
+                                                     @RequestParam(value = "ratingEnd", defaultValue = "5.00") BigDecimal ratingEnd,
+                                                     @RequestParam(value = "cuisineType", defaultValue = "VIETNAMESE") CuisineType cuisineType,
                                                      @RequestParam(value = "page", defaultValue = "0") int page,
                                                      @RequestParam(value = "size", defaultValue = "10") int size,
                                                      @RequestParam(value = "sort", required = false, defaultValue = "ASC") String sort,

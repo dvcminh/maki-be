@@ -50,7 +50,7 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public PageData<ShopDto> getShop(String name, Boolean isOpen, BigDecimal ratingStart, BigDecimal ratingEnd, CuisineType cuisineType, int page, int size, String sort, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sort), sortBy));
-        return new PageData<>(shopRepository.findDistinctByNameContainsAndRatingBetweenAndIsOpenAndCuisineTypeOrderByRatingDesc(name, ratingStart, ratingEnd, isOpen, cuisineType, pageable)
+        return new PageData<>(shopRepository.findDistinctByNameContainsAndRatingBetweenAndIsOpenAndCuisineTypeOrderByRatingDescAllIgnoreCase(name, ratingStart, ratingEnd, isOpen, cuisineType, pageable)
                 .map(shop -> shopMapper.toDto(shop, "Success")), "Shops found successfully");
     }
 

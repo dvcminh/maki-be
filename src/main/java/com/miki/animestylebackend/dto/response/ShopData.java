@@ -1,5 +1,6 @@
 package com.miki.animestylebackend.dto.response;
 
+import com.miki.animestylebackend.model.CuisineType;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -16,6 +17,7 @@ public class ShopData {
     private Integer ratingCount;
     private String imageUrl;
     private Boolean isOpen;
+    private CuisineType cuisineType;
     private LocalDateTime openTime;
     private LocalDateTime closeTime;
 }

@@ -1,9 +1,11 @@
 package com.miki.animestylebackend.service;
 
-import com.miki.animestylebackend.dto.FileStorageDto;
 import com.miki.animestylebackend.dto.page.PageData;
+import com.miki.animestylebackend.dto.response.TicketDto;
 import com.miki.animestylebackend.exception.NotFoundException;
 import com.miki.animestylebackend.mapper.FileStorageMapper;
+import com.miki.animestylebackend.mapper.TicketMapper;
+import com.miki.animestylebackend.mapper.UserMapper;
 import com.miki.animestylebackend.model.*;
 import com.miki.animestylebackend.repository.jpa.DriverRepository;
 import com.miki.animestylebackend.repository.jpa.ShopRepository;
@@ -14,7 +16,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,45 +33,52 @@ public class TicketServiceImpl implements TicketService {
     private FileStorageService fileStorageService;
     @Autowired
     private FileStorageMapper fileStorageMapper;
+    @Autowired
+    private UserMapper userMapper;
+    @Autowired
+    private TicketMapper ticketMapper;
+    @Override
+    public TicketDto saveTicket(User user, String image, TicketType ticketType, UUID shopID, UUID driverId, String title, UUID file) {
+    Shop shop = shopID != null ? shopRepository.findById(shopID)
+            .orElse(null) : null;
+
+    Driver driver = driverId != null ? driverRepository.findById(driverId)
+            .orElse(null) : null;
+
+    // Retrieve the existing FileStorage entity
+    FileStorage fileStorage = fileStorageService.findById(file);
+
+    Ticket ticket = Ticket.builder()
+            .user(user)
+            .ticketType(ticketType)
+            .imageUrl(image)
+            .shop(shop)
+            .driver(driver)
+            .fileStorageList(List.of(fileStorage))
+            .build();
+    return ticketMapper.toDto(ticketRepository.save(ticket));
+}
 
     @Override
-    public Ticket saveTicket(User user, TicketType ticketType, UUID shopID, UUID driverId, String title, MultipartFile file) {
-        Shop shop = shopRepository.findById(shopID)
-                .orElseThrow(() -> new NotFoundException("Shop not found"));
-
-        Driver driver = driverRepository.findById(driverId)
-                .orElseThrow(() -> new NotFoundException("Driver not found"));
-
-        FileStorageDto fileStorage = fileStorageService.saveFile(user, file, title);
-
-        Ticket ticket = Ticket.builder()
-                .user(user)
-                .ticketType(ticketType)
-                .shop(shop)
-                .driver(driver)
-                .fileStorageList(List.of(fileStorageMapper.toModel(fileStorage)))
-                .build();
-        return ticketRepository.save(ticket);
+    public TicketDto getTicketsById(UUID ticketId) {
+        return ticketRepository.findById(ticketId)
+                .map(ticketMapper::toDto)
+                .orElseThrow(() -> new NotFoundException("Ticket not found"));
     }
 
     @Override
-    public List<Ticket> getAllTickets() {
-        return ticketRepository.findAll();
-    }
-
-    @Override
-    public PageData<Ticket> filterTicket(TicketType ticketType, RequestStatus ticketStatus, int page, int size, Sort.Direction sort, String sortBy) {
+    public PageData<TicketDto> filterTicket(TicketType ticketType, TicketStatus ticketStatus, int page, int size, Sort.Direction sort, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sort, sortBy));
         Page<Ticket> tickets = ticketRepository.findByTicketTypeAndTicketStatus(ticketType, ticketStatus, pageable);
-        return new PageData<>(tickets, "Filter ticket successfully");
+        return new PageData<>(tickets.map(ticketMapper::toDto), "Filter ticket successfully");
     }
 
     @Override
-    public Ticket approveTicket(UUID ticketId) {
+    public TicketDto approveTicket(UUID ticketId) {
         Ticket ticket = ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new NotFoundException("Ticket not found"));
 
-        ticket.setTicketStatus(RequestStatus.APPROVED);
-        return ticketRepository.save(ticket);
+        ticket.setTicketStatus(TicketStatus.APPROVED);
+        return ticketMapper.toDto(ticketRepository.save(ticket));
     }
 }

@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     container_name: mikabackend
-    image:
+    image: ducminh210503/mika-backend
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
       SPRING_DATASOURCE_USERNAME: username

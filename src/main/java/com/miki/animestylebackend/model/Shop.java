@@ -51,9 +51,6 @@ public class Shop extends BaseEntity {
     @Column(name = "is_deleted")
     private Boolean isDeleted = false;
 
-    @Column(name = "license")
-    private String license;
-
     @Column(name = "open_time")
     private LocalDateTime openTime = LocalDateTime.now();
 

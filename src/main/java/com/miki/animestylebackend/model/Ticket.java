@@ -1,6 +1,5 @@
 package com.miki.animestylebackend.model;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,7 +29,7 @@ public class Ticket extends BaseEntity {
     @Enumerated(value = EnumType.STRING)
     private TicketType ticketType;
     @Enumerated(value = EnumType.STRING)
-    private RequestStatus ticketStatus;
+    private TicketStatus ticketStatus;
     @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<FileStorage> fileStorageList;
 }

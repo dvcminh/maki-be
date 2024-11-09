@@ -5,6 +5,7 @@ import com.miki.animestylebackend.dto.page.PaginationResponse;
 import com.miki.animestylebackend.dto.request.UpdateRequest;
 import com.miki.animestylebackend.dto.response.MultiFileResponse;
 import com.miki.animestylebackend.dto.response.Response;
+import com.miki.animestylebackend.model.FileStorage;
 import com.miki.animestylebackend.model.User;
 import com.miki.animestylebackend.service.FileStorageService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -38,6 +39,11 @@ public class FileStorageController extends BaseController {
     ) {
         User currentUser = getCurrentUser();
         return fileStorageService.saveFile(currentUser, file, title);
+    }
+
+    @GetMapping("/getById/{fileId}")
+    public FileStorage getFileById(@PathVariable("fileId") UUID fileId) {
+        return fileStorageService.findById(fileId);
     }
 
     @Operation(summary = "Get several files information")

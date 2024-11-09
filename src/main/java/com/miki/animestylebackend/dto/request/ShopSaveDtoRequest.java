@@ -1,5 +1,6 @@
 package com.miki.animestylebackend.dto.request;
 
+import com.miki.animestylebackend.model.CuisineType;
 import lombok.Data;
 
 import java.util.UUID;
@@ -13,4 +14,5 @@ public class ShopSaveDtoRequest {
     private String email;
     private String description;
     private String imageUrl;
+    private CuisineType cuisineType;
 }

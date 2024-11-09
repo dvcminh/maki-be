@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface ShopRepository extends JpaRepository<Shop, UUID> {
 
-    Page<Shop> findDistinctByNameContainsAndRatingBetweenAndIsOpenAndCuisineTypeOrderByRatingDesc(String name, BigDecimal ratingStart, BigDecimal ratingEnd, Boolean isOpen, CuisineType cuisineType, Pageable pageable);
+    Page<Shop> findDistinctByNameContainsAndRatingBetweenAndIsOpenAndCuisineTypeOrderByRatingDescAllIgnoreCase(String name, BigDecimal ratingStart, BigDecimal ratingEnd, Boolean isOpen, CuisineType cuisineType, Pageable pageable);
+
 }

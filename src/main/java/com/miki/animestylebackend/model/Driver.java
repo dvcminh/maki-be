@@ -19,8 +19,6 @@ public class Driver extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-    @Column(name = "phone_number")
-    private String phoneNumber;
     @Column(name = "vehicle_details")
     private String vehicleDetails;
     @Column(name = "available")

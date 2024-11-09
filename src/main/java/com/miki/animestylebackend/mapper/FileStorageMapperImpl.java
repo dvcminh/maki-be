@@ -4,6 +4,10 @@ import com.miki.animestylebackend.dto.FileStorageDto;
 import com.miki.animestylebackend.model.FileStorage;
 import org.springframework.stereotype.Component;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class FileStorageMapperImpl implements FileStorageMapper {
     @Override
@@ -20,6 +24,18 @@ public class FileStorageMapperImpl implements FileStorageMapper {
                 .isDeleted(fileStorage.getIsDeleted())
                 .userId(fileStorage.getUserId())
                 .build();
+    }
+
+    @Override
+    public List<FileStorageDto> toDto(List<FileStorage> fileStorage) {
+        if (fileStorage == null) {
+            return null;
+        }
+        List<FileStorageDto> fileStorageDtoList = new ArrayList<FileStorageDto>();
+        for (FileStorage fileStorage1 : fileStorage) {
+            fileStorageDtoList.add(toDto(fileStorage1));
+        }
+        return fileStorageDtoList;
     }
 
     @Override

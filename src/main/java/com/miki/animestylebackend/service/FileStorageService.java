@@ -5,6 +5,7 @@ import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.dto.page.PaginationResponse;
 import com.miki.animestylebackend.dto.request.UpdateRequest;
 import com.miki.animestylebackend.dto.response.MultiFileResponse;
+import com.miki.animestylebackend.model.FileStorage;
 import com.miki.animestylebackend.model.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,4 +36,6 @@ public interface FileStorageService {
     ResponseEntity<Object> getFile(UUID fileId);
 
     FileStorageDto saveFile(User user, MultipartFile file, String title);
+
+    FileStorage findById(UUID file);
 }
