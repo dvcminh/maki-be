@@ -95,7 +95,7 @@ public class OrderServiceImpl implements OrderService{
     @Transactional
     public OrderDto createOrder(CreateOrderRequest createOrderRequest) {
         // limit access
-        limitAccess(createOrderRequest.getEmail());
+//        limitAccess(createOrderRequest.getEmail());
         int discountPercentage = 0;
         if(!createOrderRequest.getVoucherCode().isEmpty()) {
             Voucher voucher = voucherService.getVoucherByCode(createOrderRequest.getVoucherCode());

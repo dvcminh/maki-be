@@ -99,12 +99,12 @@ public class UserService {
     }
 
     public UserDto getUserProfile(UUID id, User currentUser) {
-        User user = (User) redisTemplate.opsForHash().get(HASH_KEY, id);
-        if (user != null) {
-            redisTemplate.opsForHash().put(HASH_KEY, id, user);
-            redisTemplate.expire(HASH_KEY, CACHE_TTL, TimeUnit.SECONDS);
-            return userMapper.toUserDto(user, "Get user profile successfully");
-        }
+//        User user = (User) redisTemplate.opsForHash().get(HASH_KEY, id);
+//        if (user != null) {
+//            redisTemplate.opsForHash().put(HASH_KEY, id, user);
+//            redisTemplate.expire(HASH_KEY, CACHE_TTL, TimeUnit.SECONDS);
+//            return userMapper.toUserDto(user, "Get user profile successfully");
+//        }
         if (id == currentUser.getId() || currentUser.getRole() == Role.ADMIN) {
             return userMapper.toUserDto(currentUser, "Get user profile successfully");
         } else {
