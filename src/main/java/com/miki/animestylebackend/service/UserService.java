@@ -122,8 +122,8 @@ public class UserService {
         currentUser.setAvatar(profile.getAvatar());
 
         User savedUser = repository.save(currentUser);
-        redisTemplate.opsForHash().put(HASH_KEY, currentUser.getId(), currentUser);
-        redisTemplate.expire(HASH_KEY, CACHE_TTL, TimeUnit.SECONDS);
+//        redisTemplate.opsForHash().put(HASH_KEY, currentUser.getId(), currentUser);
+//        redisTemplate.expire(HASH_KEY, CACHE_TTL, TimeUnit.SECONDS);
         return userMapper.toUserDto(savedUser, "Update user profile successfully");
     }
 
