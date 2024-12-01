@@ -3,6 +3,7 @@ package com.miki.animestylebackend.controller;
 import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.dto.request.ShopSaveDtoRequest;
 import com.miki.animestylebackend.dto.response.ShopDto;
+import com.miki.animestylebackend.mapper.ShopMapper;
 import com.miki.animestylebackend.model.CuisineType;
 import com.miki.animestylebackend.model.User;
 import com.miki.animestylebackend.service.ShopService;
@@ -18,6 +19,7 @@ import java.util.UUID;
 @RequestMapping("/api/v1/shop")
 public class ShopController extends BaseController {
     private final ShopService shopService;
+    private final ShopMapper shopMapper;
 
     @GetMapping("/get")
     public ResponseEntity<PageData<ShopDto>> getShop(@RequestParam(value = "name", defaultValue = "shop") String name,
@@ -30,6 +32,11 @@ public class ShopController extends BaseController {
                                                      @RequestParam(value = "sort", required = false, defaultValue = "ASC") String sort,
                                                      @RequestParam(value = "sortBy", required = false, defaultValue = "createdAt") String sortBy) {
         return ResponseEntity.ok(shopService.getShop(name, isOpen, ratingStart, ratingEnd, cuisineType, page, size, sort, sortBy));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ShopDto> getShopById(@PathVariable UUID id) {
+        return ResponseEntity.ok(   shopMapper.toDto(shopService.getShopById(id), "Shop found successfully"));
     }
 
 
