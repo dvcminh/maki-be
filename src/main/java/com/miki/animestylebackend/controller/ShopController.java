@@ -16,7 +16,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/shop")
-public class ShopController extends BaseController{
+public class ShopController extends BaseController {
     private final ShopService shopService;
 
     @GetMapping("/get")
@@ -29,9 +29,8 @@ public class ShopController extends BaseController{
                                                      @RequestParam(value = "size", defaultValue = "10") int size,
                                                      @RequestParam(value = "sort", required = false, defaultValue = "ASC") String sort,
                                                      @RequestParam(value = "sortBy", required = false, defaultValue = "createdAt") String sortBy) {
-    return ResponseEntity.ok(shopService.getShop(name, isOpen, ratingStart, ratingEnd, cuisineType, page, size, sort, sortBy));
+        return ResponseEntity.ok(shopService.getShop(name, isOpen, ratingStart, ratingEnd, cuisineType, page, size, sort, sortBy));
     }
-
 
 
     @PostMapping("/register")

@@ -54,6 +54,15 @@ public class ProductController extends BaseController{
         return ResponseEntity.ok(productService.getProductsByListId(uuids, page, size));
     }
 
+    @GetMapping("/getProductByShop/{shopId}")
+    public ResponseEntity<PageData<ProductData>> getProductByShopId(@PathVariable(value = "shopId") UUID shopId,
+                                                                   @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+                                                                   @RequestParam(value = "size", required = false, defaultValue = "10") Integer size,
+                                                                   @RequestParam(value = "sort", required = false, defaultValue = "ASC") Sort.Direction sort,
+                                                                   @RequestParam(value = "sortBy", required = false, defaultValue = "productPrice") String sortBy) {
+        return ResponseEntity.ok(productService.getProductByShopId(shopId, page, size, sort, sortBy));
+    }
+
     @GetMapping("/getCategoryAndProductByCategory")
     public ResponseEntity<PageData<GetProductGroupByCategoryData>> getCategoryAndProductByCategory(@RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
                                                                                                    @RequestParam(value = "size", required = false, defaultValue = "10") Integer size,

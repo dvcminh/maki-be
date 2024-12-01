@@ -29,7 +29,7 @@ public class TicketController extends BaseController {
     public TicketDto createTicket(@RequestParam("file") UUID file,
                                   @RequestParam("ticketType") TicketType ticketType,
                                   @RequestParam("title") String titleFile,
-                                  @RequestParam("iamge") String image,
+                                  @RequestParam("image") String image,
                                   @RequestParam(value = "shopid") @Nullable UUID shopId,
                                   @RequestParam(value = "driverid") @Nullable UUID driverId) {
         User user = getCurrentUser();
@@ -44,7 +44,7 @@ public class TicketController extends BaseController {
 
     @GetMapping("/filterTicket")
     public PageData<TicketDto> filterTicket(@RequestParam("ticketType") TicketType ticketType,
-                                         @RequestParam("ticketStatus") TicketStatus ticketStatus,
+                                         @RequestParam("ticketStatus") String ticketStatus,
                                          @RequestParam(value = "page", defaultValue = "0") int page,
                                          @RequestParam(value = "size", defaultValue = "10") int size,
                                          @RequestParam(value = "sort", required = false, defaultValue = "ASC") Sort.Direction sort,

@@ -3,6 +3,7 @@ package com.miki.animestylebackend.service;
 import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.dto.request.ShopSaveDtoRequest;
 import com.miki.animestylebackend.dto.response.ShopDto;
+import com.miki.animestylebackend.exception.NotFoundException;
 import com.miki.animestylebackend.mapper.ShopMapper;
 import com.miki.animestylebackend.model.CuisineType;
 import com.miki.animestylebackend.model.Shop;
@@ -54,5 +55,9 @@ public class ShopServiceImpl implements ShopService {
                 .map(shop -> shopMapper.toDto(shop, "Success")), "Shops found successfully");
     }
 
-
+    @Override
+    public Shop getShopById(UUID shopId) {
+        return shopRepository.findById(shopId)
+                .orElseThrow(() -> new NotFoundException("Shop not found"));
+    }
 }

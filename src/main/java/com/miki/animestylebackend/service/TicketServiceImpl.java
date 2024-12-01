@@ -53,6 +53,7 @@ public class TicketServiceImpl implements TicketService {
             .ticketType(ticketType)
             .imageUrl(image)
             .shop(shop)
+            .ticketStatus(TicketStatus.PENDING)
             .driver(driver)
             .fileStorageList(List.of(fileStorage))
             .build();
@@ -67,9 +68,15 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public PageData<TicketDto> filterTicket(TicketType ticketType, TicketStatus ticketStatus, int page, int size, Sort.Direction sort, String sortBy) {
+    public PageData<TicketDto> filterTicket(TicketType ticketType, String ticketStatus, int page, int size, Sort.Direction sort, String sortBy) {
+        TicketStatus ticketStatus1 = switch (ticketStatus) {
+            case "Pending" -> TicketStatus.PENDING;
+            case "Approved" -> TicketStatus.APPROVED;
+            case "Rejected" -> TicketStatus.REJECTED;
+            default -> null;
+        };
         Pageable pageable = PageRequest.of(page, size, Sort.by(sort, sortBy));
-        Page<Ticket> tickets = ticketRepository.findByTicketTypeAndTicketStatus(ticketType, ticketStatus, pageable);
+        Page<Ticket> tickets = ticketRepository.findByTicketTypeAndTicketStatus(ticketType, ticketStatus1, pageable);
         return new PageData<>(tickets.map(ticketMapper::toDto), "Filter ticket successfully");
     }
 

@@ -5,9 +5,11 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 public class ShopData {
+    private UUID id;
     private String name;
     private String address;
     private String phoneNumber;

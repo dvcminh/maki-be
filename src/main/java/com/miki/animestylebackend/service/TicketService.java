@@ -15,7 +15,7 @@ public interface TicketService {
     TicketDto saveTicket(User userId, String image, TicketType ticketType, UUID shopID, UUID driverId, String title, UUID file);
 
 
-    PageData<TicketDto> filterTicket(TicketType ticketType, TicketStatus ticketStatus, int page, int size, Sort.Direction sort, String sortBy);
+    PageData<TicketDto> filterTicket(TicketType ticketType, String ticketStatus, int page, int size, Sort.Direction sort, String sortBy);
 
     TicketDto approveTicket(UUID ticketId);
 

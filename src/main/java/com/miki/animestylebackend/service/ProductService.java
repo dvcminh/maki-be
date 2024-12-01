@@ -34,5 +34,7 @@ public interface ProductService {
 
     PageData<ProductData> getSimilarProductByCategory(UUID productId, Integer page, Integer size, Sort.Direction sort, String sortBy);
 
+    PageData<ProductData> getProductByShopId(UUID shopId, Integer page, Integer size, Sort.Direction sort, String sortBy);
+
 //    Page<ProductDto> findProductsBySearch(String text, String category, int page, int size);
 }

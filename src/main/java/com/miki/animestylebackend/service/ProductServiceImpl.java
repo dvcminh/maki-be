@@ -10,6 +10,7 @@ import com.miki.animestylebackend.exception.ProductNotFoundException;
 import com.miki.animestylebackend.mapper.ProductMapper;
 import com.miki.animestylebackend.model.Category;
 import com.miki.animestylebackend.model.Product;
+import com.miki.animestylebackend.model.Shop;
 import com.miki.animestylebackend.repository.jpa.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,7 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
-
+    private final ShopService shopService;
     private final ProductMapper productMapper;
 
     @Override
@@ -107,6 +108,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public PageData<ProductData> getProductByShopId(UUID shopId, Integer page, Integer size, Sort.Direction sort, String sortBy) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sort, sortBy));
+        Page<ProductData> productDataPage = productRepository.findByShop_Id(shopId, pageable)
+                .map(productMapper::toProductData);
+        return new PageData<>(productDataPage, "Get product by shop id successfully");
+    }
+
+    @Override
     public PageData<ProductData> getProductsByListId(List<UUID> uuids, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         List<ProductData> products = productRepository.findAllById(uuids).stream()
@@ -121,11 +130,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product addProduct(CreateProductRequest createProductRequest) {
         Category category = categoryService.getCategoryByName(createProductRequest.getCategory());
+        Shop shop = shopService.getShopById(createProductRequest.getShopId());
         Product product = Product.builder()
                 .productName(createProductRequest.getName())
                 .productDescription(createProductRequest.getDescription())
                 .productPrice(createProductRequest.getPrice())
                 .productQuantity(createProductRequest.getQuantity())
+                .shop(shop)
                 .category(category)
                 .productImage(createProductRequest.getImage())
                 .productSize(createProductRequest.getSize())

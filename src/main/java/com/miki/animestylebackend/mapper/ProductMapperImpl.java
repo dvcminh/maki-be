@@ -4,13 +4,15 @@ import com.miki.animestylebackend.dto.response.CategoryData;
 import com.miki.animestylebackend.dto.response.ProductDto;
 import com.miki.animestylebackend.dto.response.ProductData;
 import com.miki.animestylebackend.model.Product;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class ProductMapperImpl implements ProductMapper {
-
+    private final ShopMapper shopMapper;
     @Override
     public ProductDto toProductDto(Product product, String message) {
         if (product == null) {
@@ -18,6 +20,7 @@ public class ProductMapperImpl implements ProductMapper {
         }
 
         ProductData productData = new ProductData();
+        productData.setShopDto(shopMapper.toShopData(product.getShop()));
         productData.setId(product.getId());
         productData.setName(product.getProductName());
         productData.setImage(product.getProductImage());

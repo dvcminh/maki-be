@@ -4,6 +4,7 @@ import jakarta.persistence.Enumerated;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +16,7 @@ public class CreateProductRequest {
     private String category;
     private String description;
     private BigDecimal price;
+    private UUID shopId;
     private int quantity;
     private String image;
     private String size;

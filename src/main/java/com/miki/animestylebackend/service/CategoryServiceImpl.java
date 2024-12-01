@@ -42,7 +42,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category getCategoryByName(String name) {
-        return categoryRepository.findByNameIgnoreCase(name).orElseThrow();
+        return categoryRepository.findByNameIgnoreCase(name).orElseThrow(() -> new RuntimeException("Category not found"));
     }
 
 

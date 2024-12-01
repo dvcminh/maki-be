@@ -14,6 +14,7 @@ public class ShopMapperImpl implements ShopMapper{
         }
 
         ShopData shopData = new ShopData();
+        shopData.setId(shop.getId());
         shopData.setName(shop.getName());
         shopData.setAddress(shop.getAddress());
         shopData.setPhoneNumber(shop.getPhoneNumber());
@@ -41,6 +42,7 @@ public class ShopMapperImpl implements ShopMapper{
             return null;
         }
         ShopData shopData = new ShopData();
+        shopData.setId(shop.getId());
         shopData.setName(shop.getName());
         shopData.setAddress(shop.getAddress());
         shopData.setPhoneNumber(shop.getPhoneNumber());
