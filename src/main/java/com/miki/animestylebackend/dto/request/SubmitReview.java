@@ -12,6 +12,8 @@ import java.util.UUID;
 @Getter
 @Setter
 public class SubmitReview {
+    @Nullable
+    private UUID id;
     private UUID userId;
     @Nullable
     private UUID shopId;

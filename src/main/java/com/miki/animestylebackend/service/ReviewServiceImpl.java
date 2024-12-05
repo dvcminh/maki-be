@@ -49,6 +49,13 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     public ReviewsDto saveReview(SubmitReview submitReview) {
+        if (submitReview.getId() != null) {
+            ShopReviews shopReviews = shopReviewsRepository.findById(submitReview.getId())
+                    .orElseThrow(() -> new RuntimeException("Review not found"));
+            shopReviews.setRating(submitReview.getRating());
+            shopReviews.setComment(submitReview.getComment());
+            return reviewsMapper.toReviewsDto(shopReviewsRepository.save(shopReviews), "Update review successfully");
+        }
         User user = userService.getUserById(submitReview.getUserId());
         Order order = orderService.getOrderById(submitReview.getOrderId());
         if (submitReview.getIsShop()) {
