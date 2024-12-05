@@ -22,6 +22,7 @@ public class TicketMapperImpl implements TicketMapper{
             return null;
         }
         TicketData ticketData = new TicketData();
+        ticketData.setUuid(ticket.getId());
         ticketData.setUser(userMapper.toUserData(ticket.getUser()));
         ticketData.setShop(shopMapper.toShopData(ticket.getShop()));
         ticketData.setDriver(driverMapper.toDriverData(ticket.getDriver()));

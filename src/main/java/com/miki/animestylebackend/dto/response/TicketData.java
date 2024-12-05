@@ -6,9 +6,11 @@ import com.miki.animestylebackend.model.TicketType;
 import lombok.Data;
 
 import java.util.List;
+import java.util.UUID;
 
 @Data
 public class TicketData {
+    private UUID ticketId;
     private UserData user;
     private ShopData shop;
     private DriverData driver;
