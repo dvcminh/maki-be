@@ -85,6 +85,22 @@ public class TicketServiceImpl implements TicketService {
         Ticket ticket = ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new NotFoundException("Ticket not found"));
 
+        if (ticket.getTicketStatus() == TicketStatus.APPROVED) {
+            throw new RuntimeException("Ticket already approved");
+        }
+
+        if (ticket.getTicketType() == TicketType.SHOP_REQUEST) {
+            Shop shop = shopRepository.findById(ticket.getShop().getId())
+                    .orElseThrow(() -> new NotFoundException("Shop not found"));
+            shop.setVerified(true);
+            shopRepository.save(shop);
+        } else {
+            Driver driver = driverRepository.findById(ticket.getDriver().getId())
+                    .orElseThrow(() -> new NotFoundException("Driver not found"));
+            driver.setVerified(true);
+            driverRepository.save(driver);
+        }
+
         ticket.setTicketStatus(TicketStatus.APPROVED);
         return ticketMapper.toDto(ticketRepository.save(ticket));
     }
