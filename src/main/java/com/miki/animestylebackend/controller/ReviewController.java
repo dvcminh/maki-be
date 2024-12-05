@@ -1,46 +1,51 @@
 package com.miki.animestylebackend.controller;
 
-import com.miki.animestylebackend.model.Reviews;
+import com.miki.animestylebackend.dto.page.PageData;
+import com.miki.animestylebackend.dto.request.SubmitReview;
+import com.miki.animestylebackend.dto.response.ReviewsData;
+import com.miki.animestylebackend.dto.response.ReviewsDto;
+import com.miki.animestylebackend.model.ShopReviews;
 import com.miki.animestylebackend.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/reviews")
+@RequestMapping("/api/v1/reviews")
 public class ReviewController {
 
     @Autowired
     private ReviewService reviewsService;
 
     @GetMapping
-    public ResponseEntity<List<Reviews>> getAllReviews() {
-        return ResponseEntity.ok(reviewsService.getAllReviews());
+    public ResponseEntity<PageData<ReviewsData>> getShopReviews(@RequestParam(name = "shopId", required = false) UUID shopId,
+                                                                @RequestParam(name = "driverId", required = false) UUID driverId,
+                                                                @RequestParam(defaultValue = "4.0") BigDecimal startRating,
+                                                                @RequestParam(defaultValue = "5.0") BigDecimal endRating,
+                                                                @RequestParam(defaultValue = "0") int page,
+                                                                @RequestParam(defaultValue = "10") int size,
+                                                                @RequestParam(value = "sort", required = false, defaultValue = "ASC") Sort.Direction sort,
+                                                                @RequestParam(value = "sortBy", required = false, defaultValue = "createdAt") String sortBy) {
+        return ResponseEntity.ok(reviewsService.getShopReviews(page, size, shopId, driverId, startRating, endRating, sort, sortBy));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Reviews> getReviewById(@PathVariable UUID id) {
-        return reviewsService.getReviewById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ReviewsDto> getReviewById(@PathVariable UUID id) {
+        return ResponseEntity.ok(reviewsService.getReviewById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Reviews> createReview(@RequestBody Reviews reviews) {
+    public ResponseEntity<ReviewsDto> createReview(@RequestBody SubmitReview reviews) {
         return ResponseEntity.ok(reviewsService.saveReview(reviews));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Reviews> updateReview(@PathVariable UUID id, @RequestBody Reviews reviews) {
-        return reviewsService.getReviewById(id)
-                .map(existingReview -> {
-                    reviews.setId(existingReview.getId());
-                    return ResponseEntity.ok(reviewsService.saveReview(reviews));
-                })
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ReviewsDto> updateReview(@PathVariable UUID id, @RequestBody ShopReviews shopReviews) {
+        return ResponseEntity.ok(reviewsService.getReviewById(id));
     }
 
     @DeleteMapping("/{id}")

@@ -7,8 +7,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface DriverService {
-    public List<Driver> getAllDrivers();
-    Optional<Driver> getDriverById(UUID id);
-    public Driver saveDriver(Driver driver);
-    public void deleteDriver(UUID id);
+    List<Driver> getAllDrivers();
+    Driver getDriverById(UUID id);
+    Driver saveDriver(Driver driver);
+    void deleteDriver(UUID id);
 }

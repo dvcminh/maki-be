@@ -23,9 +23,7 @@ public class DriverController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Driver> getDriverById(@PathVariable UUID id) {
-        return driverService.getDriverById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(driverService.getDriverById(id));
     }
 
     @PostMapping
@@ -35,12 +33,7 @@ public class DriverController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Driver> updateDriver(@PathVariable UUID id, @RequestBody Driver driver) {
-        return driverService.getDriverById(id)
-                .map(existingDriver -> {
-                    driver.setId(existingDriver.getId());
-                    return ResponseEntity.ok(driverService.saveDriver(driver));
-                })
-                .orElse(ResponseEntity.notFound().build());
+        return ResponseEntity.ok(driverService.saveDriver(driver));
     }
 
     @DeleteMapping("/{id}")

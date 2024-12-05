@@ -19,8 +19,8 @@ public class DriverServiceImpl implements DriverService {
         return driverRepository.findAll();
     }
 
-    public Optional<Driver> getDriverById(UUID id) {
-        return driverRepository.findById(id);
+    public Driver getDriverById(UUID id) {
+        return driverRepository.findById(id).orElseThrow(() -> new RuntimeException("Driver not found"));
     }
 
     public Driver saveDriver(Driver driver) {

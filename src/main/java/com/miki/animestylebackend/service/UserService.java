@@ -141,4 +141,8 @@ public class UserService {
         redisTemplate.expire(HASH_KEY, CACHE_TTL, TimeUnit.SECONDS);
         return userMapper.toUserDto(savedUser, "Update user profile successfully");
     }
+
+    public User getUserById(UUID userId) {
+        return repository.findById(userId).orElseThrow(() -> new UserNotFoundException("User with id " + userId + " not found"));
+    }
 }
