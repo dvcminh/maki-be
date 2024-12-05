@@ -36,7 +36,7 @@ public class ShopController extends BaseController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ShopDto> getShopById(@PathVariable UUID id) {
-        return ResponseEntity.ok(   shopMapper.toDto(shopService.getShopById(id), "Shop found successfully"));
+        return ResponseEntity.ok(shopMapper.toDto(shopService.getShopById(id), "Shop found successfully"));
     }
 
 

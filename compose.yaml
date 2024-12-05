@@ -3,7 +3,9 @@ version: '3.8'
 services:
   app:
     container_name: makibackend
-    image: ducminh210503/maki-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
       SPRING_DATASOURCE_USERNAME: username
