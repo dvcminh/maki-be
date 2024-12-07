@@ -21,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/file")
+@RequestMapping("/api/v1/file")
 public class FileStorageController extends BaseController {
 
     @Autowired

@@ -22,7 +22,8 @@ import java.util.UUID;
 
 @Service
 public class TicketServiceImpl implements TicketService {
-
+    @Autowired
+    private EmailService emailService;
     @Autowired
     private TicketRepository ticketRepository;
     @Autowired
@@ -102,6 +103,9 @@ public class TicketServiceImpl implements TicketService {
         }
 
         ticket.setTicketStatus(TicketStatus.APPROVED);
+
+        emailService.sendEmail(ticket.getUser().getEmail(), "Ticket Approved", "Your " + ticket.getTicketType() + " ticket has been approved");
+
         return ticketMapper.toDto(ticketRepository.save(ticket));
     }
 }
