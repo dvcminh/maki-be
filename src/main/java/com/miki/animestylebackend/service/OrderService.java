@@ -44,4 +44,6 @@ public interface OrderService {
     void deleteOrder(UUID orderId);
 
     Order getOrderById(UUID orderId);
+
+    PageData<OrderData> getOrdersByShop(UUID id, int page, int size);
 }

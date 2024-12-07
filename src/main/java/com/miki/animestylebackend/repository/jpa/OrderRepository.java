@@ -4,6 +4,7 @@ package com.miki.animestylebackend.repository.jpa;
 import com.miki.animestylebackend.model.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Range;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -23,5 +24,7 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
     List<Order> findAllByOrderByOrderDateDesc();
 
     Page<Order> findByUserEmailIgnoreCase(String userEmail, Pageable pageable);
+
+    Page<Order> findByShop_Id(UUID id, Pageable pageable);
 }
 

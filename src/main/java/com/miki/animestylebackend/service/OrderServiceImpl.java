@@ -105,7 +105,9 @@ public class OrderServiceImpl implements OrderService{
             voucherService.useVoucher(voucher);
             discountPercentage = voucher.getDiscount();
         }
+        User user = userService.getUserById(createOrderRequest.getUserId());
         Order order = new Order();
+        order.setUser(user);
         order.setOrderDate(LocalDateTime.now());
         order.setShippingStatus("PENDING");
         order.setShippingAddress(createOrderRequest.getAddress());
@@ -273,6 +275,14 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order getOrderById(UUID orderId) {
         return orderRepository.findById(orderId).orElseThrow(() -> new OrderNotFoundException("Order with id " + orderId + " not found"));
+    }
+
+    @Override
+    public PageData<OrderData> getOrdersByShop(UUID id, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<OrderData> orderDtoPage = orderRepository.findByShop_Id(id, pageable).map(orderMapper::toOrderData);
+
+        return new PageData<>(orderDtoPage, "Orders found successfully");
     }
 
 }

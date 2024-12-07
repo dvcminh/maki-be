@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 public class CreateOrderRequest {
+    private UUID userId;
     private BigDecimal totalAmount;
     private String email;
     private String address;

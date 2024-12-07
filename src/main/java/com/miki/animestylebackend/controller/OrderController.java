@@ -24,6 +24,13 @@ public class OrderController extends BaseController{
         return ResponseEntity.ok(orderService.createOrder(createOrderRequest));
     }
 
+    @GetMapping("/getOrders/{id}")
+    public ResponseEntity<PageData<OrderData>> getOrders(@PathVariable UUID id,
+                                                         @RequestParam(defaultValue = "0") int page,
+                                                         @RequestParam(defaultValue = "10") int size) {
+        return ResponseEntity.ok(orderService.getOrdersByShop(id, page, size));
+    }
+
     @GetMapping("/getOrderById/{orderId}")
     public ResponseEntity<OrderDto> getOrderById(@PathVariable UUID orderId) {
         return ResponseEntity.ok(orderService.findById(orderId));

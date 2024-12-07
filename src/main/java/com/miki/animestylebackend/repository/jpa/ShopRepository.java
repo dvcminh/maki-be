@@ -19,4 +19,5 @@ public interface ShopRepository extends JpaRepository<Shop, UUID> {
 
     Optional<Shop> findByUser_Id(UUID id);
 
+
 }
