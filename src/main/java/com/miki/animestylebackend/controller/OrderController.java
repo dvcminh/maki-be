@@ -18,7 +18,6 @@ import java.util.UUID;
 @RequestMapping("/api/v1/orders")
 public class OrderController extends BaseController{
     private final OrderService orderService;
-    private final UserService userService;
 
     @PostMapping("/create_order")
     public ResponseEntity<OrderDto> checkout(@RequestBody CreateOrderRequest createOrderRequest) {

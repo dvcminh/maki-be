@@ -34,6 +34,12 @@ public class ShopController extends BaseController {
         return ResponseEntity.ok(shopService.getShop(name, isOpen, ratingStart, ratingEnd, cuisineType, page, size, sort, sortBy));
     }
 
+    @GetMapping("/myShop")
+    public ResponseEntity<ShopDto> getMyShop() {
+        User user = getCurrentUser();
+        return ResponseEntity.ok(shopMapper.toDto(shopService.getShopByUserId(user.getId()), "Shop found successfully"));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ShopDto> getShopById(@PathVariable UUID id) {
         return ResponseEntity.ok(shopMapper.toDto(shopService.getShopById(id), "Shop found successfully"));

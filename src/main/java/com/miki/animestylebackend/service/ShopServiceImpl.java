@@ -60,4 +60,10 @@ public class ShopServiceImpl implements ShopService {
         return shopRepository.findById(shopId)
                 .orElseThrow(() -> new NotFoundException("Shop not found"));
     }
+
+    @Override
+    public Shop getShopByUserId(UUID id) {
+        return shopRepository.findByUser_Id(id)
+                .orElseThrow(() -> new NotFoundException("Shop not found"));
+    }
 }
