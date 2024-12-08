@@ -35,7 +35,7 @@ public class OrderItemServiceImpl implements OrderItemService{
     public PageData<OrderItemData> getOrderItemByOrderId(UUID id,int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<OrderItemData> orderItems = orderItemRepository.findByOrder_Id(id, pageable)
-                .map(orderItem -> orderItemMapper.toOrderItemData(orderItem, "Order Item found"));
+                .map(orderItemMapper::toOrderItemData);
 
         return new PageData<>(orderItems, "Order Items found");
     }

@@ -11,7 +11,6 @@ import java.util.UUID;
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, UUID> {
 
-    // Additional custom query methods can be added here
     List<OrderItem> findByOrderId(UUID id);
 
     Page<OrderItem> findByOrder_Id(UUID id, Pageable pageable);

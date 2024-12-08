@@ -12,6 +12,7 @@ import java.util.UUID;
 public class OrderData {
     private UUID id;
     private String user;
+    private UUID shopId;
     private LocalDateTime createdAt;
     private BigDecimal totalAmount;
     private String paymentStatus;

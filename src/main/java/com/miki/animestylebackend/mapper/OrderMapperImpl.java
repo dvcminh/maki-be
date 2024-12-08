@@ -16,14 +16,7 @@ public class OrderMapperImpl implements OrderMapper {
             return null;
         }
 
-        OrderData orderData = new OrderData();
-        orderData.setId(order.getId());
-        orderData.setUser(order.getUserEmail());
-        orderData.setCreatedAt(order.getOrderDate());
-        orderData.setTotalAmount(order.getTotalAmount());
-        orderData.setPaymentStatus(order.getPaymentStatus());
-        orderData.setShippingStatus(order.getShippingStatus());
-        orderData.setAddress(order.getShippingAddress());
+        OrderData orderData = toOrderData(order);
 
         OrderDto orderDto = new OrderDto();
         orderDto.setSuccess(true);
@@ -43,12 +36,12 @@ public class OrderMapperImpl implements OrderMapper {
 
         OrderData orderData = new OrderData();
         orderData.setId(order.getId());
+        orderData.setShopId(order.getShop().getId());
         orderData.setUser(order.getUserEmail());
         orderData.setCreatedAt(order.getOrderDate());
         orderData.setTotalAmount(order.getTotalAmount());
         orderData.setPaymentStatus(order.getPaymentStatus());
         orderData.setShippingStatus(order.getShippingStatus());
-        orderData.setPaymentStatus(order.getPaymentStatus());
         orderData.setPaymentMethod(order.getPaymentMethod());
         orderData.setAddress(order.getShippingAddress());
 

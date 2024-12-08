@@ -14,5 +14,5 @@ public class OrderItemData {
     private BigDecimal pricePerUnit;
     private String size;
     private String color;
-    private Product productData;
+    private ProductData productData;
 }

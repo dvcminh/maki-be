@@ -13,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 public class CreateOrderRequest {
-    private UUID userId;
+    private UUID shopId;
     private BigDecimal totalAmount;
     private String email;
     private String address;

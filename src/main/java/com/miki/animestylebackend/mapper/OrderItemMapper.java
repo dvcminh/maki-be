@@ -8,5 +8,5 @@ public interface OrderItemMapper {
 //    OrderItem toOrder(CreateOrderItemRequest createOrderRequest);
 
     OrderItemDto toOrderItemDto(OrderItem orderItem, String message);
-    OrderItemData toOrderItemData(OrderItem orderItem, String message);
+    OrderItemData toOrderItemData(OrderItem orderItem);
 }

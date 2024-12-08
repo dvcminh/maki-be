@@ -22,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,7 @@ public class OrderServiceImpl implements OrderService{
     private final ProductService productService;
     private final UserMapper userMapper;
     private final UserService userService;
+    private final ShopService shopService;
     private final OrderMapper orderMapper;
     private final VoucherService voucherService;
     private final EmailService emailService;
@@ -69,9 +71,10 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public PageData<OrderData> getALl(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<OrderData> orderDtoPage = orderRepository.findAll(pageable).map(orderMapper::toOrderData);
+    public PageData<OrderData> getALl(User user, int page, int size, String sortBy, Sort.Direction direction) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortBy));
+        Page<OrderData> orderDtoPage = orderRepository.findByUser_Id(user.getId(), pageable)
+                .map(orderMapper::toOrderData);
 
         return new PageData<>(orderDtoPage, "Orders found successfully");
     }
@@ -93,7 +96,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     @Transactional
-    public OrderDto createOrder(CreateOrderRequest createOrderRequest) {
+    public OrderDto createOrder(User user, CreateOrderRequest createOrderRequest) {
         // limit access
 //        limitAccess(createOrderRequest.getEmail());
         int discountPercentage = 0;
@@ -105,9 +108,10 @@ public class OrderServiceImpl implements OrderService{
             voucherService.useVoucher(voucher);
             discountPercentage = voucher.getDiscount();
         }
-        User user = userService.getUserById(createOrderRequest.getUserId());
+        Shop shop = shopService.getShopById(createOrderRequest.getShopId());
         Order order = new Order();
         order.setUser(user);
+        order.setShop(shop);
         order.setOrderDate(LocalDateTime.now());
         order.setShippingStatus("PENDING");
         order.setShippingAddress(createOrderRequest.getAddress());
@@ -148,14 +152,10 @@ public class OrderServiceImpl implements OrderService{
         OrderDto orderDto = orderMapper.toOrderDto(orderRepository.save(order), "Order created successfully");
 
         emailService.sendCustomerOrderDetailLinkEmail(createOrderRequest.getEmail(), "Order created successfully", order.getId().toString());
-        emailService.sendAdminOrderDetailLinkEmail("radiomfmdak@gmail.com", "Order created successfully", order.getId().toString());
+        emailService.sendAdminOrderDetailLinkEmail("21522348@gm.uit.edu.vn", "Order created successfully", order.getId().toString());
 
         return orderDto;
     }
-
-
-
-
 
     @Override
     public OrderDto findById(UUID id) {
@@ -178,9 +178,6 @@ public class OrderServiceImpl implements OrderService{
 
         return new PageData<>(orderDtoPage, "Orders found successfully");
     }
-
-
-
 
     @Override
     public List<Order> getOrdersByUser(String email) {

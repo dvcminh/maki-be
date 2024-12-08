@@ -5,9 +5,11 @@ import com.miki.animestylebackend.dto.response.OrderData;
 import com.miki.animestylebackend.dto.response.OrderDto;
 import com.miki.animestylebackend.dto.request.UpdateStatusRequest;
 import com.miki.animestylebackend.dto.page.PageData;
+import com.miki.animestylebackend.model.User;
 import com.miki.animestylebackend.service.OrderService;
 import com.miki.animestylebackend.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +23,8 @@ public class OrderController extends BaseController{
 
     @PostMapping("/create_order")
     public ResponseEntity<OrderDto> checkout(@RequestBody CreateOrderRequest createOrderRequest) {
-        return ResponseEntity.ok(orderService.createOrder(createOrderRequest));
+        User user = getCurrentUser();
+        return ResponseEntity.ok(orderService.createOrder(user, createOrderRequest));
     }
 
     @GetMapping("/getOrders/{id}")
@@ -49,9 +52,12 @@ public class OrderController extends BaseController{
     }
 
     @GetMapping("/getOrders")
-    public ResponseEntity<PageData<OrderData>> getOrders(@RequestParam(defaultValue = "0") int page,
-                                                         @RequestParam(defaultValue = "10") int size) {
-        return ResponseEntity.ok(orderService.getALl(page, size));
+    public ResponseEntity<PageData<OrderData>> getOrdersByUser(@RequestParam(defaultValue = "0") int page,
+                                                               @RequestParam(defaultValue = "10") int size,
+                                                               @RequestParam(defaultValue = "createdAt") String sortBy,
+                                                               @RequestParam(defaultValue = "DESC") Sort.Direction direction) {
+        User user = getCurrentUser();
+        return ResponseEntity.ok(orderService.getALl(user, page, size, sortBy, direction));
     }
 
     @GetMapping("/countOrders")

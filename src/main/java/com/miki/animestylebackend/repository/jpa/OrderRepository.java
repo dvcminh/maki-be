@@ -26,5 +26,8 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
     Page<Order> findByUserEmailIgnoreCase(String userEmail, Pageable pageable);
 
     Page<Order> findByShop_Id(UUID id, Pageable pageable);
+
+    Page<Order> findByUser_Id(UUID id, Pageable pageable);
+
 }
 

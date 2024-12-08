@@ -3,26 +3,22 @@ package com.miki.animestylebackend.mapper;
 import com.miki.animestylebackend.dto.response.OrderItemData;
 import com.miki.animestylebackend.dto.response.OrderItemDto;
 import com.miki.animestylebackend.model.OrderItem;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Component
+@RequiredArgsConstructor
 public class OrderItemMapperImpl implements OrderItemMapper {
-
+    private final ProductMapper productMapper;
     @Override
     public OrderItemDto toOrderItemDto(OrderItem orderItem, String message) {
         if (orderItem == null) {
             return null;
         }
-        OrderItemData orderItemData = new OrderItemData();
-        orderItemData.setId(orderItem.getId());
-        orderItemData.setProductData(orderItem.getProduct());
-        orderItemData.setQuantity(orderItem.getQuantity());
-        orderItemData.setPricePerUnit(orderItem.getPricePerUnit());
-        orderItemData.setSize(orderItem.getSize());
-        orderItemData.setColor(orderItem.getColor());
+        OrderItemData orderItemData = toOrderItemData(orderItem);
 
         OrderItemDto orderItemDto = new OrderItemDto();
         orderItemDto.setSuccess(true);
@@ -35,13 +31,13 @@ public class OrderItemMapperImpl implements OrderItemMapper {
     }
 
     @Override
-    public OrderItemData toOrderItemData(OrderItem orderItem, String message) {
+    public OrderItemData toOrderItemData(OrderItem orderItem) {
         if (orderItem == null) {
             return null;
         }
         OrderItemData orderItemData = new OrderItemData();
         orderItemData.setId(orderItem.getId());
-        orderItemData.setProductData(orderItem.getProduct());
+        orderItemData.setProductData(productMapper.toProductData(orderItem.getProduct()));
         orderItemData.setQuantity(orderItem.getQuantity());
         orderItemData.setPricePerUnit(orderItem.getPricePerUnit().multiply(new BigDecimal(orderItem.getQuantity())));
         orderItemData.setSize(orderItem.getSize());
