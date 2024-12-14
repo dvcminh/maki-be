@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Data
 public class TicketData {
-    private UUID ticketId;
+    private UUID id;
     private UserData user;
     private ShopData shop;
     private DriverData driver;

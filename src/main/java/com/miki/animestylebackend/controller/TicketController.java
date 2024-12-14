@@ -1,6 +1,7 @@
 package com.miki.animestylebackend.controller;
 
 import com.miki.animestylebackend.dto.page.PageData;
+import com.miki.animestylebackend.dto.response.TicketData;
 import com.miki.animestylebackend.dto.response.TicketDto;
 import com.miki.animestylebackend.mapper.FileStorageMapper;
 import com.miki.animestylebackend.model.*;
@@ -43,12 +44,12 @@ public class TicketController extends BaseController {
     }
 
     @GetMapping("/filterTicket")
-    public PageData<TicketDto> filterTicket(@RequestParam("ticketType") TicketType ticketType,
-                                         @RequestParam("ticketStatus") String ticketStatus,
-                                         @RequestParam(value = "page", defaultValue = "0") int page,
-                                         @RequestParam(value = "size", defaultValue = "10") int size,
-                                         @RequestParam(value = "sort", required = false, defaultValue = "ASC") Sort.Direction sort,
-                                         @RequestParam(value = "sortBy", required = false, defaultValue = "createdAt") String sortBy) {
+    public PageData<TicketData> filterTicket(@RequestParam("ticketType") TicketType ticketType,
+                                             @RequestParam("ticketStatus") String ticketStatus,
+                                             @RequestParam(value = "page", defaultValue = "0") int page,
+                                             @RequestParam(value = "size", defaultValue = "10") int size,
+                                             @RequestParam(value = "sort", required = false, defaultValue = "ASC") Sort.Direction sort,
+                                             @RequestParam(value = "sortBy", required = false, defaultValue = "createdAt") String sortBy) {
         return ticketService.filterTicket(ticketType, ticketStatus, page, size, sort, sortBy);
     }
 

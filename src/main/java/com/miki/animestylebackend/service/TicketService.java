@@ -1,6 +1,7 @@
 package com.miki.animestylebackend.service;
 
 import com.miki.animestylebackend.dto.page.PageData;
+import com.miki.animestylebackend.dto.response.TicketData;
 import com.miki.animestylebackend.dto.response.TicketDto;
 import com.miki.animestylebackend.model.TicketStatus;
 import com.miki.animestylebackend.model.Ticket;
@@ -15,7 +16,7 @@ public interface TicketService {
     TicketDto saveTicket(User userId, String image, TicketType ticketType, UUID shopID, UUID driverId, String title, UUID file);
 
 
-    PageData<TicketDto> filterTicket(TicketType ticketType, String ticketStatus, int page, int size, Sort.Direction sort, String sortBy);
+    PageData<TicketData> filterTicket(TicketType ticketType, String ticketStatus, int page, int size, Sort.Direction sort, String sortBy);
 
     TicketDto approveTicket(UUID ticketId);
 
