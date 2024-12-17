@@ -2,6 +2,7 @@ package com.miki.animestylebackend.service;
 
 import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.dto.request.ShopSaveDtoRequest;
+import com.miki.animestylebackend.dto.response.ShopData;
 import com.miki.animestylebackend.dto.response.ShopDto;
 import com.miki.animestylebackend.exception.NotFoundException;
 import com.miki.animestylebackend.mapper.ShopMapper;
@@ -41,29 +42,32 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public Shop deleteShop(UUID id) {
+    public void deleteShop(UUID id) {
         Shop shop = shopRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Shop not found"));
         shopRepository.delete(shop);
-        return shop;
     }
 
     @Override
-    public PageData<ShopDto> getShop(String name, Boolean isOpen, BigDecimal ratingStart, BigDecimal ratingEnd, CuisineType cuisineType, int page, int size, String sort, String sortBy) {
+    public PageData<ShopData> getShop(String name, Boolean isOpen, BigDecimal ratingStart, BigDecimal ratingEnd, CuisineType cuisineType, int page, int size, String sort, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sort), sortBy));
+        if (name.isEmpty()) {
+            return new PageData<>(shopRepository.findAll(pageable)
+                    .map(shopMapper::toShopData), "Shops found successfully");
+        }
         return new PageData<>(shopRepository.findDistinctByNameContainsAndRatingBetweenAndIsOpenAndCuisineTypeOrderByRatingDescAllIgnoreCase(name, ratingStart, ratingEnd, isOpen, cuisineType, pageable)
-                .map(shop -> shopMapper.toDto(shop, "Success")), "Shops found successfully");
+                .map(shopMapper::toShopData), "Shops found successfully");
     }
 
     @Override
-    public Shop getShopById(UUID shopId) {
-        return shopRepository.findById(shopId)
-                .orElseThrow(() -> new NotFoundException("Shop not found"));
+    public ShopDto getShopById(UUID shopId) {
+        return shopMapper.toDto(shopRepository.findById(shopId)
+                .orElseThrow(() -> new NotFoundException("Shop not found")), "Shop found successfully");
     }
 
     @Override
-    public Shop getShopByUserId(UUID id) {
-        return shopRepository.findByUser_Id(id)
-                .orElseThrow(() -> new NotFoundException("Shop not found"));
+    public ShopDto getShopByUserId(UUID id) {
+        return shopMapper.toDto(shopRepository.findByUser_Id(id)
+                .orElseThrow(() -> new NotFoundException("Shop not found")), "Shop found successfully");
     }
 }

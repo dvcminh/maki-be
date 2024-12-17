@@ -4,9 +4,11 @@ import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.dto.request.SubmitReview;
 import com.miki.animestylebackend.dto.response.ReviewsData;
 import com.miki.animestylebackend.dto.response.ReviewsDto;
+import com.miki.animestylebackend.exception.NotFoundException;
 import com.miki.animestylebackend.mapper.ReviewsMapper;
 import com.miki.animestylebackend.model.*;
 import com.miki.animestylebackend.repository.jpa.DriverReviewsRepository;
+import com.miki.animestylebackend.repository.jpa.ShopRepository;
 import com.miki.animestylebackend.repository.jpa.ShopReviewsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;
@@ -25,6 +27,7 @@ public class ReviewServiceImpl implements ReviewService {
     private final UserService userService;
     private final OrderService orderService;
     private final DriverService driverService;
+    private final ShopRepository shopRepository;
 
     public PageData<ReviewsData> getShopReviews(int page, int size, UUID shopId, UUID driverId, BigDecimal startRating, BigDecimal endRating, Sort.Direction sort, String sortBy) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sort, sortBy));
@@ -59,7 +62,8 @@ public class ReviewServiceImpl implements ReviewService {
         User user = userService.getUserById(submitReview.getUserId());
         Order order = orderService.getOrderById(submitReview.getOrderId());
         if (submitReview.getIsShop()) {
-            Shop shop = shopService.getShopById(submitReview.getShopId());
+            Shop shop = shopRepository.findById(submitReview.getShopId())
+                    .orElseThrow(() -> new NotFoundException("Shop not found"));
             ShopReviews shopReviews = ShopReviews.builder()
                     .rating(submitReview.getRating())
                     .comment(submitReview.getComment())

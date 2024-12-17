@@ -47,7 +47,6 @@ public class TicketServiceImpl implements TicketService {
     Driver driver = driverId != null ? driverRepository.findById(driverId)
             .orElse(null) : null;
 
-    // Retrieve the existing FileStorage entity
     FileStorage fileStorage = fileStorageService.findById(file);
 
     Ticket ticket = Ticket.builder()

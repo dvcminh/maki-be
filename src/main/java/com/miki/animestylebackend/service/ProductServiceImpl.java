@@ -6,12 +6,14 @@ import com.miki.animestylebackend.dto.request.UpdateProductRequest;
 import com.miki.animestylebackend.dto.response.CategoryData;
 import com.miki.animestylebackend.dto.response.GetProductGroupByCategoryData;
 import com.miki.animestylebackend.dto.response.ProductData;
+import com.miki.animestylebackend.exception.NotFoundException;
 import com.miki.animestylebackend.exception.ProductNotFoundException;
 import com.miki.animestylebackend.mapper.ProductMapper;
 import com.miki.animestylebackend.model.Category;
 import com.miki.animestylebackend.model.Product;
 import com.miki.animestylebackend.model.Shop;
 import com.miki.animestylebackend.repository.jpa.ProductRepository;
+import com.miki.animestylebackend.repository.jpa.ShopRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.*;
@@ -27,6 +29,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class ProductServiceImpl implements ProductService {
+    private final ShopRepository shopRepository;
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
     private final ShopService shopService;
@@ -130,7 +133,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product addProduct(CreateProductRequest createProductRequest) {
         Category category = categoryService.getCategoryByName(createProductRequest.getCategory());
-        Shop shop = shopService.getShopById(createProductRequest.getShopId());
+        Shop shop = shopRepository.findById(createProductRequest.getShopId())
+                .orElseThrow(() -> new NotFoundException("Shop not found"));
         Product product = Product.builder()
                 .productName(createProductRequest.getName())
                 .productDescription(createProductRequest.getDescription())

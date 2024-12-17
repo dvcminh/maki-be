@@ -7,6 +7,7 @@ import com.miki.animestylebackend.dto.request.CreateOrderRequest;
 import com.miki.animestylebackend.dto.request.UpdateStatusRequest;
 import com.miki.animestylebackend.dto.response.OrderData;
 import com.miki.animestylebackend.dto.response.OrderDto;
+import com.miki.animestylebackend.exception.NotFoundException;
 import com.miki.animestylebackend.exception.OrderNotFoundException;
 import com.miki.animestylebackend.exception.VoucherNotFoundException;
 import com.miki.animestylebackend.mapper.OrderMapper;
@@ -14,6 +15,7 @@ import com.miki.animestylebackend.mapper.UserMapper;
 import com.miki.animestylebackend.model.*;
 import com.miki.animestylebackend.repository.jpa.OrderItemRepository;
 import com.miki.animestylebackend.repository.jpa.OrderRepository;
+import com.miki.animestylebackend.repository.jpa.ShopRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -37,6 +39,7 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 @Slf4j
 public class OrderServiceImpl implements OrderService{
+    private final ShopRepository shopRepository;
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
     private final ProductService productService;
@@ -108,7 +111,8 @@ public class OrderServiceImpl implements OrderService{
             voucherService.useVoucher(voucher);
             discountPercentage = voucher.getDiscount();
         }
-        Shop shop = shopService.getShopById(createOrderRequest.getShopId());
+        Shop shop = shopRepository.findById(createOrderRequest.getShopId())
+                .orElseThrow(() -> new NotFoundException("Shop with id " + createOrderRequest.getShopId() + " not found"));
         Order order = new Order();
         order.setUser(user);
         order.setShop(shop);

@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
@@ -16,8 +15,7 @@ import java.util.UUID;
 public interface ShopRepository extends JpaRepository<Shop, UUID> {
 
     Page<Shop> findDistinctByNameContainsAndRatingBetweenAndIsOpenAndCuisineTypeOrderByRatingDescAllIgnoreCase(String name, BigDecimal ratingStart, BigDecimal ratingEnd, Boolean isOpen, CuisineType cuisineType, Pageable pageable);
-
+    Page<Shop> findAll(Pageable pageable);
     Optional<Shop> findByUser_Id(UUID id);
-
 
 }
