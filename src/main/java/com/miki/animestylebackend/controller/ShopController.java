@@ -20,10 +20,9 @@ import java.util.UUID;
 @RequestMapping("/api/v1/shop")
 public class ShopController extends BaseController {
     private final ShopService shopService;
-    private final ShopMapper shopMapper;
 
     @GetMapping("/get")
-    public ResponseEntity<PageData<ShopData>> getShop(@RequestParam(value = "name") String name,
+    public ResponseEntity<PageData<ShopData>> getShop(@RequestParam(value = "name", defaultValue = "") String name,
                                                       @RequestParam(value = "isopen", defaultValue = "false") Boolean isOpen,
                                                       @RequestParam(value = "ratingStart", defaultValue = "0.00") BigDecimal ratingStart,
                                                       @RequestParam(value = "ratingEnd", defaultValue = "5.00") BigDecimal ratingEnd,
