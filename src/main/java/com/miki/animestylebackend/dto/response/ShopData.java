@@ -19,6 +19,7 @@ public class ShopData {
     private Integer ratingCount;
     private String imageUrl;
     private Boolean isOpen;
+    private Boolean verified;
     private CuisineType cuisineType;
     private LocalDateTime openTime;
     private LocalDateTime closeTime;

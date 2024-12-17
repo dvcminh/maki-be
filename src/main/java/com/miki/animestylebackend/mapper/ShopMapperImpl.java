@@ -13,19 +13,7 @@ public class ShopMapperImpl implements ShopMapper{
             return null;
         }
 
-        ShopData shopData = new ShopData();
-        shopData.setId(shop.getId());
-        shopData.setName(shop.getName());
-        shopData.setAddress(shop.getAddress());
-        shopData.setPhoneNumber(shop.getPhoneNumber());
-        shopData.setRating(shop.getRating());
-        shopData.setRatingCount(shop.getRatingCount());
-        shopData.setImageUrl(shop.getImageUrl());
-        shopData.setEmail(shop.getEmail());
-        shopData.setDescription(shop.getDescription());
-        shopData.setOpenTime(shop.getOpenTime());
-        shopData.setCloseTime(shop.getCloseTime());
-        shopData.setCuisineType(shop.getCuisineType());
+        ShopData shopData = toShopData(shop);
 
         ShopDto shopDto = new ShopDto();
         shopDto.setData(shopData);
@@ -54,6 +42,7 @@ public class ShopMapperImpl implements ShopMapper{
         shopData.setRatingCount(shop.getRatingCount());
         shopData.setImageUrl(shop.getImageUrl());
         shopData.setIsOpen(shop.getIsOpen());
+        shopData.setVerified(shop.getVerified());
         shopData.setCuisineType(shop.getCuisineType());
 
         return shopData;
