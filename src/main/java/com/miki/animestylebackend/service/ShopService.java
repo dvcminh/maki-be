@@ -9,6 +9,7 @@ import com.miki.animestylebackend.model.Shop;
 import com.miki.animestylebackend.model.User;
 
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.UUID;
 
 public interface ShopService {
@@ -20,4 +21,7 @@ public interface ShopService {
     ShopDto getShopById(UUID shopId);
 
     ShopDto getShopByUserId(UUID id);
+    Map<String, Object> getSalesPerformance(UUID shopId);
+    Map<String, Object> getInventoryStatistics(UUID shopId, Integer lowStockThreshold);
+    Map<String, Object> getCustomerInsights(UUID shopId);
 }

@@ -32,6 +32,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -167,14 +168,6 @@ public class OrderServiceImpl implements OrderService{
                 .orElseThrow(() -> new OrderNotFoundException("Order with id " + id + " not found"));
     }
 
-//    @Override
-//    public PageData<OrderData> findOrderByUserId(UUID id, int page, int size) {
-//        Pageable pageable = PageRequest.of(page, size);
-//        Page<OrderData> orderDtoPage = orderRepository.findByUserId(id, pageable).map(orderMapper::toOrderData);
-//
-//        return new PageData<>(orderDtoPage, "Orders found successfully");
-//    }
-
     @Override
     public PageData<OrderData> findOrderByUserEmail(String email, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
@@ -188,44 +181,6 @@ public class OrderServiceImpl implements OrderService{
         return orderRepository.findByUserEmailContaining(email);
     }
 
-//    @Override
-//    public List<DailyRevenueDTO> calculateDailyRevenue() {
-//        List<Order> orders = orderRepository.findAll();
-//
-//        List<Order> sortedOrders = orders.stream()
-//                .sorted(Comparator.comparing(Order::getOrderDate))
-//                .distinct()
-//                .collect(Collectors.toList());
-//
-//
-//        List<Order> recentOrders = sortedOrders.stream()
-//                .limit(28)
-//                .toList();
-//
-//        Map<LocalDate, BigDecimal> revenueByDate = recentOrders.stream()
-//                .collect(Collectors.groupingBy(
-//                        order -> order.getOrderDate().toLocalDate(),
-//                        LinkedHashMap::new,
-//                        Collectors.mapping(
-//                                Order::getTotalAmount,
-//                                Collectors.reducing(BigDecimal.ZERO, BigDecimal::add)
-//                        )
-//                ));
-//
-//
-//        List<DailyRevenueDTO> dailyRevenues = revenueByDate.entrySet().stream()
-//                .map(entry -> {
-//                    DailyRevenueDTO dailyRevenue = new DailyRevenueDTO();
-//                    dailyRevenue.setDate(entry.getKey());
-//                    dailyRevenue.setRevenue(entry.getValue());
-//                    return dailyRevenue;
-//                })
-//                .collect(Collectors.toList());
-//
-//        return dailyRevenues;
-//
-//    }
-
 
 
     @Override
@@ -234,12 +189,6 @@ public class OrderServiceImpl implements OrderService{
                 .map(Order::getTotalAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
-
-//    @Override
-//    public List<Order> getOrdersContainingText(String text) {
-//        User user = userService.getUserByUsername(text);
-//        return orderRepository.findByUser(user);
-//    }
 
     @Override
     public List<Order> getOrdersByUserName(String userName) {
@@ -250,6 +199,10 @@ public class OrderServiceImpl implements OrderService{
     public void saveOrder(Order order) {
         orderRepository.save(order);
     }
+
+
+
+
 
     @Override
     @Transactional

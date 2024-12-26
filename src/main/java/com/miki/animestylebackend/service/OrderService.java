@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public interface OrderService {
@@ -23,24 +24,16 @@ public interface OrderService {
 
     List<Order> findByShippingStatus(String shippingStatus);
     List<Order> findByPaymentStatus(String shippingStatus);
-
     OrderDto createOrder(User user, CreateOrderRequest createOrderRequest);
     OrderDto findById(UUID id);
-//    PageData<OrderData> findOrderByUserId(UUID id, int page, int size);
     PageData<OrderData> findOrderByUserEmail(String email, int page, int size);
-//    Order createOrderFromCartItems(List<Product> cartItems, User user);
     List<Order> getOrdersByUser(String email);
 
-//    List<DailyRevenueDTO> calculateDailyRevenue();
-
     BigDecimal calculateTotalRevenue();
-
-//    List<Order> getOrdersContainingText(String text);
 
     List<Order> getOrdersByUserName(String userName);
 
     void saveOrder(Order order);
-
     OrderDto updateOrderStatus(UUID uuid, UpdateStatusRequest updateStatusRequest);
 
     void deleteOrder(UUID orderId);

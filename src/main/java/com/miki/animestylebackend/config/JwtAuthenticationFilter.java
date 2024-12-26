@@ -5,6 +5,8 @@ import com.miki.animestylebackend.exception.InvalidToken;
 import com.miki.animestylebackend.exception.UnAuthorizedException;
 import com.miki.animestylebackend.repository.jpa.TokenRepository;
 import com.miki.animestylebackend.service.JwtService;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +24,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.security.SignatureException;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -71,9 +74,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 }
             }
             filterChain.doFilter(request, response);
-        } catch (Exception ex) {
-            throw new InvalidToken("Invalid token");
+        } catch (ExpiredJwtException e) {
+            throw new InvalidToken("Token has expired " + e.getMessage());
+        } catch (MalformedJwtException e) {
+            throw new InvalidToken("Token is malformed " + e.getMessage());
+        } catch (UnAuthorizedException e) {
+            throw new InvalidToken("Token is unauthorized " + e.getMessage());
+        } catch (ForbiddenException e) {
+            throw new InvalidToken("Token is forbidden " + e.getMessage());
+        } catch (IllegalArgumentException e) {
+            throw new InvalidToken("Token is invalid " + e.getMessage());
         }
-
     }
 }

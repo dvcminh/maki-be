@@ -42,17 +42,17 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
     }
 
-    @ExceptionHandler(HttpClientErrorException.Forbidden.class)
-    public ResponseEntity<ErrorResponse> handleForbiddenException(HttpClientErrorException.Forbidden ex, WebRequest request) {
-        ErrorResponse errorResponse = new ErrorResponse(
-                FORBIDDEN.value(),
-                ex.getMessage(),
-                LocalDateTime.now(),
-                request.getDescription(false),
-                false
-        );
-        return new ResponseEntity<>(errorResponse, FORBIDDEN);
-    }
+//    @ExceptionHandler(HttpClientErrorException.Forbidden.class)
+//    public ResponseEntity<ErrorResponse> handleForbiddenException(HttpClientErrorException.Forbidden ex, WebRequest request) {
+//        ErrorResponse errorResponse = new ErrorResponse(
+//                FORBIDDEN.value(),
+//                ex.getMessage(),
+//                LocalDateTime.now(),
+//                request.getDescription(false),
+//                false
+//        );
+//        return new ResponseEntity<>(errorResponse, FORBIDDEN);
+//    }
 
 
     @ExceptionHandler(NoSuchElementException.class)
@@ -67,17 +67,17 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex, WebRequest request) {
-        ErrorResponse errorResponse = new ErrorResponse(
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                ex.getMessage(),
-                LocalDateTime.now(),
-                request.getDescription(false),
-                false
-        );
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+//    @ExceptionHandler(RuntimeException.class)
+//    public ResponseEntity<ErrorResponse> handleRuntimeException(RuntimeException ex, WebRequest request) {
+//        ErrorResponse errorResponse = new ErrorResponse(
+//                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+//                ex.getMessage(),
+//                LocalDateTime.now(),
+//                request.getDescription(false),
+//                false
+//        );
+//        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+//    }
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ErrorResponse> handleBadRequestException(BadRequestException ex, WebRequest request) {

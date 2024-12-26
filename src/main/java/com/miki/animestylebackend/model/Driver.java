@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Driver extends BaseEntity {
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
     @Column(name = "vehicle_details")

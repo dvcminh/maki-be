@@ -23,10 +23,10 @@ public class Product extends BaseEntity {
     private BigDecimal productPrice;
     private Integer productQuantity;
     private String productImage;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "shop_id")
     @JsonIgnoreProperties("products")
     private Shop shop;

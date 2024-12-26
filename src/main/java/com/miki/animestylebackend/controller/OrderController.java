@@ -13,6 +13,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -71,17 +74,4 @@ public class OrderController extends BaseController{
                                                                 @RequestParam(defaultValue = "10") int size) {
         return ResponseEntity.ok(orderService.findOrderByUserEmail(userEmail, page, size));
     }
-
-//    @GetMapping("/getOrders")
-//    public ResponseEntity<List<Order>> findOrdersByUserId(@RequestParam("userId") int id,
-//                                                   @RequestParam("shippingAddress") String address,
-//                                                   @RequestParam("firstName") String firstName,
-//                                                   @RequestParam("lastName") String lastName,
-//                                                   @RequestParam("email") String email,
-//                                                   @RequestParam("phoneNumber") String phone) {
-//        User user = new User(id,email,firstName,lastName,phone,address);
-//
-//        List<Order> orders = orderService.getOrdersByUser(user);
-//        return ResponseEntity.ok(orders);
-//    }
 }

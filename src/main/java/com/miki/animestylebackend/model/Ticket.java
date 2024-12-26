@@ -18,11 +18,11 @@ public class Ticket extends BaseEntity {
     private String imageUrl;
     @ManyToOne
     private User user;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "shop_id")
     @Nullable
     private Shop shop;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "driver_id")
     @Nullable
     private Driver driver;
@@ -30,7 +30,7 @@ public class Ticket extends BaseEntity {
     private TicketType ticketType;
     @Enumerated(value = EnumType.STRING)
     private TicketStatus ticketStatus;
-    @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<FileStorage> fileStorageList;
 }
 

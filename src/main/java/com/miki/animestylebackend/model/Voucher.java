@@ -25,7 +25,7 @@ public class Voucher extends BaseEntity{
     private String description;
     private int quantity;
     private boolean isUsed;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "shop_id")
     @Nullable
     private Shop shop;

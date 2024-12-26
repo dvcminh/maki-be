@@ -63,6 +63,21 @@ public class ShopController extends BaseController {
         shopService.deleteShop(id);
         return ResponseEntity.ok("Shop deleted successfully");
     }
+
+    @GetMapping("/{shopId}/sales-performance")
+    public ResponseEntity<?> getSalesPerformance(@PathVariable UUID shopId) {
+        return ResponseEntity.ok(shopService.getSalesPerformance(shopId));
+    }
+
+    @GetMapping("/{shopId}/inventory-statistics")
+    public ResponseEntity<?> getInventoryStatistics(@PathVariable UUID shopId, @RequestParam(defaultValue = "10") Integer lowStockThreshold) {
+        return ResponseEntity.ok(shopService.getInventoryStatistics(shopId, lowStockThreshold));
+    }
+
+    @GetMapping("/{shopId}/customer-insights")
+    public ResponseEntity<?> getCustomerInsights(@PathVariable UUID shopId) {
+        return ResponseEntity.ok(shopService.getCustomerInsights(shopId));
+    }
 }
 
 
