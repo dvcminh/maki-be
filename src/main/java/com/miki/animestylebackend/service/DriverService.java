@@ -1,14 +1,15 @@
 package com.miki.animestylebackend.service;
 
-import com.miki.animestylebackend.model.Driver;
+import com.miki.animestylebackend.dto.page.PageData;
+import com.miki.animestylebackend.dto.request.DriverSaveDtoRequest;
+import com.miki.animestylebackend.dto.response.DriverData;
+import com.miki.animestylebackend.dto.response.DriverDto;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface DriverService {
-    List<Driver> getAllDrivers();
-    Driver getDriverById(UUID id);
-    Driver saveDriver(Driver driver);
+    PageData<DriverData> getAllDrivers(String name, int page, int size);
+    DriverDto getDriverById(UUID id);
+    DriverDto saveDriver(DriverSaveDtoRequest driver);
     void deleteDriver(UUID id);
 }

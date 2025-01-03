@@ -16,11 +16,7 @@ public class DriverMapperImpl implements DriverMapper{
         if(driver == null){
             return null;
         }
-        DriverData driverData = new DriverData();
-        driverData.setUser(userMapper.toUserData(driver.getUser()));
-        driverData.setAvailable(driver.getAvailable());
-        driverData.setVerified(driver.getVerified());
-        driverData.setVehicleDetail(driver.getVehicleDetails());
+        DriverData driverData = toDriverData(driver);
 
         DriverDto driverDto = new DriverDto();
         driverDto.setSuccess(true);

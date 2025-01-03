@@ -2,11 +2,13 @@ package com.miki.animestylebackend.service;
 
 import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.dto.request.SubmitReview;
+import com.miki.animestylebackend.dto.response.DriverDto;
 import com.miki.animestylebackend.dto.response.ReviewsData;
 import com.miki.animestylebackend.dto.response.ReviewsDto;
 import com.miki.animestylebackend.exception.NotFoundException;
 import com.miki.animestylebackend.mapper.ReviewsMapper;
 import com.miki.animestylebackend.model.*;
+import com.miki.animestylebackend.repository.jpa.DriverRepository;
 import com.miki.animestylebackend.repository.jpa.DriverReviewsRepository;
 import com.miki.animestylebackend.repository.jpa.ShopRepository;
 import com.miki.animestylebackend.repository.jpa.ShopReviewsRepository;
@@ -26,7 +28,7 @@ public class ReviewServiceImpl implements ReviewService {
     private final ShopService shopService;
     private final UserService userService;
     private final OrderService orderService;
-    private final DriverService driverService;
+    private final DriverRepository driverRepository;
     private final ShopRepository shopRepository;
 
     public PageData<ReviewsData> getShopReviews(int page, int size, UUID shopId, UUID driverId, BigDecimal startRating, BigDecimal endRating, Sort.Direction sort, String sortBy) {
@@ -73,7 +75,8 @@ public class ReviewServiceImpl implements ReviewService {
                     .build();
             return reviewsMapper.toReviewsDto(shopReviewsRepository.save(shopReviews), "Save review successfully");
         }
-        Driver driver = driverService.getDriverById(submitReview.getDriverId());
+        Driver driver = driverRepository.findById(submitReview.getDriverId())
+                .orElseThrow(() -> new NotFoundException("Driver not found"));
         DriverReviews driverReviews = DriverReviews.builder()
                 .rating(submitReview.getRating())
                 .comment(submitReview.getComment())
