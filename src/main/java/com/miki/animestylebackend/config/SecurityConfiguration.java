@@ -59,30 +59,8 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
-                        req.requestMatchers(GET, "/api/v1/users/me").hasAnyRole(CUSTOMER.name(), STAFF.name(), ADMIN.name())
-                                .requestMatchers(GET, "/api/v1/users/getUserByUsername").hasAnyRole(STAFF.name(), ADMIN.name())
-                                .requestMatchers(GET, "/api/v1/users/getAllUsers").hasAnyRole(STAFF.name(), ADMIN.name())
-                                .requestMatchers(PATCH, "/api/v1/users/**").hasAnyRole(CUSTOMER.name(), STAFF.name(), ADMIN.name())
-                                .requestMatchers(POST, "/api/v1/users").hasAnyRole(CUSTOMER.name(), STAFF.name(), ADMIN.name())
-                                .requestMatchers(PATCH, "/api/v1/users/updateUser/{id}").hasRole(ADMIN.name())
-
-                                .requestMatchers(DELETE, "/api/v1/product/{id}").hasRole(ADMIN.name())
-
-                                .requestMatchers("/api/v1/staff/**").hasAnyRole(STAFF.name())
-                                .requestMatchers(GET, "/api/v1/staff/**").hasAnyAuthority(STAFF_READ.name())
-                                .requestMatchers(POST, "/api/v1/staff/**").hasAnyAuthority(STAFF_CREATE.name())
-                                .requestMatchers(PUT, "/api/v1/staff/**").hasAnyAuthority(STAFF_UPDATE.name())
-                                .requestMatchers(DELETE, "/api/v1/staff/**").hasAnyAuthority(STAFF_DELETE.name())
-
-                                .requestMatchers("/api/v1/admin/**").hasAnyRole(ADMIN.name())
-                                .requestMatchers(GET, "/api/v1/admin/**").hasAnyAuthority(ADMIN_READ.name())
-
-                                .requestMatchers("/api/v1/customer/**").hasAnyRole(CUSTOMER.name())
-                                .requestMatchers(GET, "/api/v1/customer/**").hasAnyAuthority(CUSTOMER_READ.name())
-                                .requestMatchers(WHITE_LIST_URL)
+                        req.anyRequest()
                                 .permitAll()
-                                .anyRequest()
-                                .authenticated()
                 )
 //                .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
