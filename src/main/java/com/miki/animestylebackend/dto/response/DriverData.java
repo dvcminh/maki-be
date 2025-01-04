@@ -8,4 +8,6 @@ public class DriverData {
     private String vehicleDetail;
     private Boolean available;
     private Boolean verified;
+    private Double latitude;
+    private Double longitude;
 }

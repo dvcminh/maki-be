@@ -36,6 +36,8 @@ public class DriverMapperImpl implements DriverMapper{
         driverData.setAvailable(driver.getAvailable());
         driverData.setVerified(driver.getVerified());
         driverData.setVehicleDetail(driver.getVehicleDetails());
+        driverData.setLatitude(driver.getLatitude());
+        driverData.setLongitude(driver.getLongitude());
 
         return driverData;
     }

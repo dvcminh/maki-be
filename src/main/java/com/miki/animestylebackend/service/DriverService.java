@@ -2,6 +2,7 @@ package com.miki.animestylebackend.service;
 
 import com.miki.animestylebackend.dto.page.PageData;
 import com.miki.animestylebackend.dto.request.DriverSaveDtoRequest;
+import com.miki.animestylebackend.dto.request.UpdateLocationRequest;
 import com.miki.animestylebackend.dto.response.DriverData;
 import com.miki.animestylebackend.dto.response.DriverDto;
 
@@ -12,4 +13,6 @@ public interface DriverService {
     DriverDto getDriverById(UUID id);
     DriverDto saveDriver(DriverSaveDtoRequest driver);
     void deleteDriver(UUID id);
+
+    void updateLocation(UpdateLocationRequest request);
 }

@@ -32,11 +32,13 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfiguration {
 
     private static final String[] WHITE_LIST_URL = {"/api/v1/auth/**",
+            "**",
             "/api/v1/product/**",
             "/api/v1/category/**",
             "/api/v1/payment/**",
             "/api/v1/order_items/**",
             "/api/v1/vouchers/**",
+            "/api/v1/location/**",
             "/api/v1/orders/**",
             "/v2/api-docs",
             "/v3/api-docs",
@@ -85,7 +87,7 @@ public class SecurityConfiguration {
                 .exceptionHandling(e -> e.authenticationEntryPoint(jwtAuthEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+//                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(logout ->
                         logout.logoutUrl("/api/v1/auth/logout")
                                 .addLogoutHandler(logoutHandler)

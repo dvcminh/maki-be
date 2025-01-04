@@ -4,12 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -27,4 +23,8 @@ public class Driver extends BaseEntity {
     private Boolean available;
     @Column(name = "verified")
     private Boolean verified = false;
+    @Column(name = "latitude")
+    private Double latitude;
+    @Column(name = "longtitude")
+    private Double longitude;
 }
